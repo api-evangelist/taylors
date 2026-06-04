@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/taylors/main/json-structure/taylors-patron-structure.json",
+  "name": "Patron",
+  "description": "JSON Structure for a Koha patron (borrower) from the Taylor's Library REST API.",
+  "type": "object",
+  "properties": {
+    "patron_id": { "type": "int64", "description": "Internal patron identifier" },
+    "cardnumber": { "type": ["string", "null"], "maxLength": 32 },
+    "category_id": { "type": "string", "maxLength": 10 },
+    "library_id": { "type": "string", "maxLength": 10 },
+    "firstname": { "type": ["string", "null"] },
+    "surname": { "type": ["string", "null"] },
+    "email": { "type": ["string", "null"] },
+    "phone": { "type": ["string", "null"] },
+    "date_of_birth": { "type": ["string", "null"], "format": "date" },
+    "date_enrolled": { "type": ["string", "null"], "format": "date" },
+    "expiry_date": { "type": ["string", "null"], "format": "date" },
+    "lang": { "type": "string", "maxLength": 25 },
+    "checkouts_count": { "type": ["int32", "null"] },
+    "overdues_count": { "type": ["int32", "null"] },
+    "account_balance": { "type": ["double", "null"] },
+    "expired": { "type": "boolean" },
+    "restricted": { "type": "boolean" },
+    "updated_on": { "type": ["string", "null"], "format": "datetime" }
+  },
+  "required": ["patron_id", "category_id", "library_id", "lang"]
+}

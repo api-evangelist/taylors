@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/taylors/main/json-schema/taylors-hold-schema.json",
+  "title": "Koha Hold",
+  "description": "A hold (reservation) record from the Taylor's Library Koha REST API.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "hold_id": { "type": "integer", "description": "Internal hold identifier" },
+    "patron_id": { "type": "integer", "description": "Internal patron identifier" },
+    "biblio_id": { "type": ["integer", "null"], "description": "Internal biblio identifier" },
+    "item_id": { "type": ["integer", "null"], "description": "Internal item identifier" },
+    "item_type_id": { "type": ["string", "null"], "description": "Optional itemtype for a record level hold" },
+    "pickup_library_id": { "type": ["string", "null"], "description": "Internal library identifier for the pickup library" },
+    "hold_date": { "type": ["string", "null"], "format": "date", "description": "The date the hold was placed" },
+    "expiration_date": { "type": ["string", "null"], "format": "date", "description": "The date the hold expires" },
+    "cancellation_date": { "type": ["string", "null"], "format": "date", "description": "The date the hold was cancelled" },
+    "cancellation_reason": { "type": ["string", "null"], "description": "The reason the hold was cancelled" },
+    "waiting_date": { "type": ["string", "null"], "format": "date", "description": "The date the item was marked as waiting" },
+    "priority": { "type": ["integer", "null"], "description": "Where in the queue the patron sits" },
+    "status": { "type": ["string", "null"], "description": "One letter code defining the hold status after confirmation" },
+    "item_level": { "type": "boolean", "description": "If the hold is placed at item level" },
+    "suspended": { "type": "boolean", "description": "Controls if the hold is suspended" },
+    "suspended_until": { "type": ["string", "null"], "format": "date-time", "description": "Date until which the hold is suspended" },
+    "non_priority": { "type": "boolean", "description": "Set this hold as non priority" },
+    "lowest_priority": { "type": "boolean", "description": "Controls if the hold is given lowest priority" },
+    "notes": { "type": ["string", "null"], "description": "Notes related to this hold" },
+    "timestamp": { "type": "string", "format": "date-time", "description": "Timestamp for the latest hold update" }
+  }
+}

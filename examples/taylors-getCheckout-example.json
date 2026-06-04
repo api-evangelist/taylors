@@ -1,0 +1,18 @@
+{
+  "checkout_id": 88213,
+  "patron_id": 1042,
+  "item_id": 50231,
+  "library_id": "LAKESIDE",
+  "checkout_date": "2026-05-20T10:15:00+08:00",
+  "due_date": "2026-06-10T23:59:00+08:00",
+  "checkin_date": null,
+  "last_renewed_date": null,
+  "renewals_count": 0,
+  "unseen_renewals": 0,
+  "auto_renew": false,
+  "auto_renew_error": null,
+  "onsite_checkout": false,
+  "external_id": "30009001234567",
+  "note": null,
+  "timestamp": "2026-05-20T10:15:00+08:00"
+}

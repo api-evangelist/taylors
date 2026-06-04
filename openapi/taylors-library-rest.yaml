@@ -1,0 +1,818 @@
+openapi: 3.0.3
+info:
+  title: Taylor's Library Koha REST API
+  description: >-
+    OpenAPI 3.0 description of the Taylor's University Library catalog REST API,
+    served by the open-source Koha integrated library system under /api/v1. This
+    document was converted to OpenAPI 3.0 from the live, publicly retrievable
+    Swagger 2.0 definition at https://librarycatalogue.taylors.edu.my/api/v1/.
+    Only resources whose object schemas were confirmed present in the live
+    definition (patron, checkout, hold, item, library, item_type) are described
+    here. Collection and resource endpoints require authentication (HTTP 401 is
+    returned to anonymous clients); the specification document itself is public.
+  version: v1
+  contact:
+    name: Taylor's University Library
+    url: https://librarycatalogue.taylors.edu.my/
+servers:
+  - url: https://librarycatalogue.taylors.edu.my/api/v1
+    description: Taylor's Library Koha REST API (basePath /api/v1)
+security:
+  - basicAuth: []
+  - oauth2ClientCredentials: []
+tags:
+  - name: patrons
+    description: Patron (borrower) records
+  - name: checkouts
+    description: Item checkouts (issues)
+  - name: holds
+    description: Holds (reservations)
+  - name: items
+    description: Catalog items
+  - name: libraries
+    description: Libraries (branches)
+  - name: item_types
+    description: Item types
+paths:
+  /patrons:
+    get:
+      tags: [patrons]
+      operationId: listPatrons
+      summary: List patrons
+      responses:
+        '200':
+          description: A list of patrons
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/patron'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /patrons/{patron_id}:
+    parameters:
+      - $ref: '#/components/parameters/patron_id_pp'
+    get:
+      tags: [patrons]
+      operationId: getPatron
+      summary: Get patron
+      responses:
+        '200':
+          description: A patron
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/patron'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /checkouts:
+    get:
+      tags: [checkouts]
+      operationId: listCheckouts
+      summary: List checkouts
+      responses:
+        '200':
+          description: A list of checkouts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/checkout'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /checkouts/{checkout_id}:
+    parameters:
+      - name: checkout_id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      tags: [checkouts]
+      operationId: getCheckout
+      summary: Get checkout
+      responses:
+        '200':
+          description: A checkout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/checkout'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /holds:
+    get:
+      tags: [holds]
+      operationId: listHolds
+      summary: List holds
+      responses:
+        '200':
+          description: A list of holds
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/hold'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /holds/{hold_id}:
+    parameters:
+      - name: hold_id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      tags: [holds]
+      operationId: getHold
+      summary: Get hold
+      responses:
+        '200':
+          description: A hold
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/hold'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /items:
+    get:
+      tags: [items]
+      operationId: listItems
+      summary: List items
+      responses:
+        '200':
+          description: A list of items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/item'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /items/{item_id}:
+    parameters:
+      - name: item_id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      tags: [items]
+      operationId: getItem
+      summary: Get item
+      responses:
+        '200':
+          description: An item
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/item'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /libraries:
+    get:
+      tags: [libraries]
+      operationId: listLibraries
+      summary: List libraries
+      responses:
+        '200':
+          description: A list of libraries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/library'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /libraries/{library_id}:
+    parameters:
+      - name: library_id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [libraries]
+      operationId: getLibrary
+      summary: Get library
+      responses:
+        '200':
+          description: A library
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/library'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /item_types:
+    get:
+      tags: [item_types]
+      operationId: listItemTypes
+      summary: List item types
+      responses:
+        '200':
+          description: A list of item types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/item_type'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    oauth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://librarycatalogue.taylors.edu.my/api/v1/oauth/token
+          scopes: {}
+  parameters:
+    patron_id_pp:
+      name: patron_id
+      in: path
+      required: true
+      description: Internal patron identifier
+      schema:
+        type: integer
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+    Forbidden:
+      description: Access forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+  schemas:
+    error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        error_code:
+          type: string
+          description: Error code
+      required:
+        - error
+    patron:
+      type: object
+      additionalProperties: false
+      required:
+        - patron_id
+        - category_id
+        - library_id
+        - lang
+      properties:
+        patron_id:
+          type: integer
+          description: Internal patron identifier
+        cardnumber:
+          type: string
+          nullable: true
+          maxLength: 32
+          description: library assigned user identifier
+        category_id:
+          type: string
+          maxLength: 10
+          description: Internal identifier for the patron's category
+        library_id:
+          type: string
+          maxLength: 10
+          description: Internal identifier for the patron's home library
+        firstname:
+          type: string
+          nullable: true
+          description: patron's first name
+        surname:
+          type: string
+          nullable: true
+          description: patron's surname or last name
+        middle_name:
+          type: string
+          nullable: true
+          description: patron's middle name
+        preferred_name:
+          type: string
+          nullable: true
+          description: patron's preferred name
+        title:
+          type: string
+          nullable: true
+          description: patron's title
+        email:
+          type: string
+          nullable: true
+          description: primary email address for patron's primary address
+        secondary_email:
+          type: string
+          nullable: true
+          description: secondary email address for patron's primary address
+        phone:
+          type: string
+          nullable: true
+          description: primary phone number for patron's primary address
+        mobile:
+          type: string
+          nullable: true
+          description: the other phone number for patron's primary address
+        date_of_birth:
+          type: string
+          format: date
+          nullable: true
+          description: patron's date of birth
+        date_enrolled:
+          type: string
+          format: date
+          nullable: true
+          description: date the patron was added to Koha
+        expiry_date:
+          type: string
+          format: date
+          nullable: true
+          description: date the patron's card is set to expire
+        address:
+          type: string
+          nullable: true
+          description: first address line of patron's primary address
+        city:
+          type: string
+          nullable: true
+          description: city or town of patron's primary address
+        state:
+          type: string
+          nullable: true
+          description: state or province of patron's primary address
+        postal_code:
+          type: string
+          nullable: true
+          description: zip or postal code of patron's primary address
+        country:
+          type: string
+          nullable: true
+          description: country of patron's primary address
+        lang:
+          type: string
+          maxLength: 25
+          description: lang to use to send notices to this patron
+        checkouts_count:
+          type: integer
+          nullable: true
+          description: Number of checkouts
+        overdues_count:
+          type: integer
+          nullable: true
+          description: Number of overdued checkouts
+        account_balance:
+          type: number
+          nullable: true
+          description: Balance of the patron's account
+        anonymized:
+          type: boolean
+          readOnly: true
+          description: If the patron has been anonymized
+        expired:
+          type: boolean
+          readOnly: true
+          description: If patron is expired
+        restricted:
+          type: boolean
+          readOnly: true
+          description: If any restriction applies to the patron
+        updated_on:
+          type: string
+          format: date-time
+          nullable: true
+          description: last modification date of the patron
+    checkout:
+      type: object
+      additionalProperties: false
+      properties:
+        checkout_id:
+          type: integer
+          description: internally assigned checkout identifier
+        patron_id:
+          type: integer
+          description: Internal patron identifier
+        item_id:
+          type: integer
+          nullable: true
+        library_id:
+          type: string
+          nullable: true
+          description: code of the library the item was checked out
+        checkout_date:
+          type: string
+          format: date-time
+          description: Date the item was issued
+        due_date:
+          type: string
+          format: date-time
+          description: Due date
+        checkin_date:
+          type: string
+          format: date-time
+          nullable: true
+          description: Date the item was returned
+        last_renewed_date:
+          type: string
+          format: date-time
+          nullable: true
+          description: Date the item was last renewed
+        renewals_count:
+          type: integer
+          nullable: true
+          description: Number of renewals
+        unseen_renewals:
+          type: integer
+          nullable: true
+          description: Number of consecutive unseen renewals
+        auto_renew:
+          type: boolean
+          description: Auto renewal
+        auto_renew_error:
+          type: string
+          nullable: true
+          description: Auto renewal error
+        onsite_checkout:
+          type: boolean
+          description: On site checkout
+        external_id:
+          type: string
+          nullable: true
+          description: other identifier of checked out item f.e. barcode
+        note:
+          type: string
+          nullable: true
+          description: Issue note text
+        timestamp:
+          type: string
+          description: Last update time
+    hold:
+      type: object
+      additionalProperties: false
+      properties:
+        hold_id:
+          type: integer
+          description: Internal hold identifier
+        patron_id:
+          type: integer
+          description: Internal patron identifier
+        biblio_id:
+          type: integer
+          nullable: true
+          description: Internal biblio identifier
+        item_id:
+          type: integer
+          nullable: true
+          description: Internal item identifier
+        item_type_id:
+          type: string
+          nullable: true
+          description: If record level hold, the optional itemtype of the requested item
+        pickup_library_id:
+          type: string
+          nullable: true
+          description: Internal library identifier for the pickup library
+        hold_date:
+          type: string
+          format: date
+          nullable: true
+          description: The date the hold was placed
+        expiration_date:
+          type: string
+          format: date
+          nullable: true
+          description: The date the hold expires
+        cancellation_date:
+          type: string
+          format: date
+          nullable: true
+          description: The date the hold was cancelled
+        cancellation_reason:
+          type: string
+          nullable: true
+          description: The reason the hold was cancelled
+        waiting_date:
+          type: string
+          format: date
+          nullable: true
+          description: The date the item was marked as waiting at the library
+        priority:
+          type: integer
+          nullable: true
+          description: Where in the queue the patron sits
+        status:
+          type: string
+          nullable: true
+          description: A one letter code defining the status of the hold after confirmation
+        item_level:
+          type: boolean
+          description: If the hold is placed at item level
+        suspended:
+          type: boolean
+          description: Controls if the hold is suspended
+        suspended_until:
+          type: string
+          format: date-time
+          nullable: true
+          description: Date until which the hold has been suspended
+        non_priority:
+          type: boolean
+          description: Set this hold as non priority
+        lowest_priority:
+          type: boolean
+          description: Controls if the hold is given the lowest priority on the queue
+        notes:
+          type: string
+          nullable: true
+          description: Notes related to this hold
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp for the latest hold update
+    item:
+      type: object
+      additionalProperties: false
+      required:
+        - biblio_id
+      properties:
+        item_id:
+          type: integer
+          description: Internal item identifier
+        biblio_id:
+          type: integer
+          description: Internal identifier for the parent bibliographic record
+        external_id:
+          type: string
+          nullable: true
+          maxLength: 20
+          description: The item's barcode
+        callnumber:
+          type: string
+          nullable: true
+          maxLength: 255
+          description: Call number for this item
+        home_library_id:
+          type: string
+          nullable: true
+          maxLength: 10
+          description: Internal library id for the library the item belongs to
+        holding_library_id:
+          type: string
+          nullable: true
+          maxLength: 10
+          description: Library that is currently in possession of the item
+        item_type_id:
+          type: string
+          nullable: true
+          maxLength: 10
+          description: Itemtype defining the type for this item
+        collection_code:
+          type: string
+          nullable: true
+          maxLength: 80
+          description: Authorized value for the collection code associated with this item
+        location:
+          type: string
+          nullable: true
+          maxLength: 80
+          description: Authorized value for the shelving location for this item
+        permanent_location:
+          type: string
+          nullable: true
+          maxLength: 80
+          description: The permanent shelving location
+        copy_number:
+          type: string
+          nullable: true
+          maxLength: 32
+          description: Copy number
+        inventory_number:
+          type: string
+          nullable: true
+          maxLength: 80
+          description: Inventory number
+        acquisition_date:
+          type: string
+          format: date
+          nullable: true
+          description: The date the item was acquired
+        replacement_price:
+          type: number
+          nullable: true
+          description: Cost the library charges to replace the item
+        purchase_price:
+          type: number
+          nullable: true
+          description: Purchase price
+        public_notes:
+          type: string
+          nullable: true
+          description: Public notes on this item
+        internal_notes:
+          type: string
+          nullable: true
+          description: Non-public notes on this item
+        checkouts_count:
+          type: integer
+          nullable: true
+          description: Number of times this item has been checked out
+        holds_count:
+          type: integer
+          nullable: true
+          description: Number of times this item has been placed on hold
+        renewals_count:
+          type: integer
+          nullable: true
+          description: Number of times this item has been renewed
+        not_for_loan_status:
+          type: integer
+          description: Authorized value defining why this item is not for loan
+        last_seen_date:
+          type: string
+          format: date-time
+          nullable: true
+          description: The date the item barcode was last scanned
+        uri:
+          type: string
+          nullable: true
+          description: URL for the item
+        timestamp:
+          type: string
+          format: date-time
+          description: Date and time this item was last altered
+    library:
+      type: object
+      additionalProperties: false
+      required:
+        - library_id
+        - name
+      properties:
+        library_id:
+          type: string
+          minLength: 1
+          maxLength: 10
+          description: internally assigned library identifier
+        name:
+          type: string
+          description: Printable name of library
+        address1:
+          type: string
+          nullable: true
+          description: the first address line of the library
+        address2:
+          type: string
+          nullable: true
+          description: the second address line of the library
+        address3:
+          type: string
+          nullable: true
+          description: the third address line of the library
+        city:
+          type: string
+          nullable: true
+          description: the city or province of the library
+        state:
+          type: string
+          nullable: true
+          description: the regional state of the library
+        postal_code:
+          type: string
+          nullable: true
+          maxLength: 25
+          description: the postal code of the library
+        country:
+          type: string
+          nullable: true
+          description: the country of the library
+        phone:
+          type: string
+          nullable: true
+          description: the primary phone of the library
+        fax:
+          type: string
+          nullable: true
+          description: the fax number of the library
+        email:
+          type: string
+          nullable: true
+          description: the primary email address of the library
+        url:
+          type: string
+          nullable: true
+          description: the URL for your library or branch's website
+        ip:
+          type: string
+          nullable: true
+          maxLength: 15
+          description: the IP address for your library or branch
+        notes:
+          type: string
+          nullable: true
+          description: notes related to your library or branch
+        marc_org_code:
+          type: string
+          nullable: true
+          maxLength: 16
+          description: MARC Organization Code
+        geolocation:
+          type: string
+          nullable: true
+          maxLength: 255
+          description: geolocation of your library
+        pickup_location:
+          type: boolean
+          description: If the library can act as a pickup location
+        public:
+          type: boolean
+          description: If the library is visible to the public
+    item_type:
+      type: object
+      additionalProperties: false
+      required:
+        - item_type_id
+      properties:
+        item_type_id:
+          type: string
+          minLength: 1
+          maxLength: 10
+          readOnly: true
+          description: Unique key, a code associated with the item type
+        description:
+          type: string
+          description: A plain text explanation of the item type
+        parent_type:
+          type: string
+          nullable: true
+          description: Unique key, a code associated with the parent item type
+        rentalcharge:
+          type: number
+          nullable: true
+          description: The amount charged when this item is checked out
+        daily_rental_charge:
+          type: number
+          nullable: true
+          description: The amount charged for each day between checkout and due date
+        hourly_rental_charge:
+          type: number
+          nullable: true
+          description: The amount charged for each hour between checkout and due date
+        default_replacement_cost:
+          type: number
+          nullable: true
+          description: Default replacement cost
+        process_fee:
+          type: number
+          nullable: true
+          description: Default processing fee
+        not_for_loan_status:
+          type: boolean
+          description: If items of this type are not for loan
+        hide_in_opac:
+          type: boolean
+          description: Hide the item type from the search options in OPAC
+        bookable:
+          type: boolean
+          description: Whether this item type is normally bookable
+        image_url:
+          type: string
+          nullable: true
+          description: URL for the item type icon
+        summary:
+          type: string
+          nullable: true
+          description: Information from the summary field, may include HTML

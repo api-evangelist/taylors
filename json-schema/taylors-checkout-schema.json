@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/taylors/main/json-schema/taylors-checkout-schema.json",
+  "title": "Koha Checkout",
+  "description": "An item checkout (issue) record from the Taylor's Library Koha REST API.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "checkout_id": { "type": "integer", "description": "Internally assigned checkout identifier" },
+    "patron_id": { "type": "integer", "description": "Internal patron identifier" },
+    "item_id": { "type": ["integer", "null"], "description": "Internal item identifier" },
+    "library_id": { "type": ["string", "null"], "description": "Code of the library the item was checked out" },
+    "checkout_date": { "type": "string", "format": "date-time", "description": "Date the item was issued" },
+    "due_date": { "type": "string", "format": "date-time", "description": "Due date" },
+    "checkin_date": { "type": ["string", "null"], "format": "date-time", "description": "Date the item was returned" },
+    "last_renewed_date": { "type": ["string", "null"], "format": "date-time", "description": "Date the item was last renewed" },
+    "renewals_count": { "type": ["integer", "null"], "description": "Number of renewals" },
+    "unseen_renewals": { "type": ["integer", "null"], "description": "Number of consecutive unseen renewals" },
+    "auto_renew": { "type": "boolean", "description": "Auto renewal" },
+    "auto_renew_error": { "type": ["string", "null"], "description": "Auto renewal error" },
+    "onsite_checkout": { "type": "boolean", "description": "On site checkout" },
+    "external_id": { "type": ["string", "null"], "description": "Other identifier of checked out item, e.g. barcode" },
+    "note": { "type": ["string", "null"], "description": "Issue note text" },
+    "timestamp": { "type": "string", "description": "Last update time" }
+  }
+}

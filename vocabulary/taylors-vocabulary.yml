@@ -1,0 +1,57 @@
+vocabulary:
+  name: Taylor's Library Koha API Vocabulary
+  description: >-
+    Controlled vocabulary for the core terms exposed by the Taylor's University
+    Library Koha REST API (/api/v1). Terms and definitions are derived from the
+    live, publicly retrievable Swagger 2.0 definition served by the Koha
+    integrated library system.
+  version: "1.0.0"
+  terms:
+    - term: patron
+      definition: A library borrower record, identified by patron_id and tied to a category and home library.
+      tags: [ koha, people, borrower ]
+    - term: cardnumber
+      definition: Library-assigned user identifier printed on the patron's library card.
+      tags: [ patron, identifier ]
+    - term: category_id
+      definition: Internal identifier for the patron category (e.g. staff, student, faculty).
+      tags: [ patron, classification ]
+    - term: checkout
+      definition: An issue record representing a loan of an item to a patron, with checkout and due dates.
+      tags: [ koha, circulation, loan ]
+    - term: due_date
+      definition: The date and time by which a checked-out item must be returned.
+      tags: [ checkout, circulation ]
+    - term: renewals_count
+      definition: The number of times a checkout has been renewed.
+      tags: [ checkout, circulation ]
+    - term: hold
+      definition: A reservation placed by a patron on a bibliographic record or specific item.
+      tags: [ koha, circulation, reservation ]
+    - term: pickup_library_id
+      definition: Internal library identifier for the branch where a hold will be collected.
+      tags: [ hold, library ]
+    - term: priority
+      definition: The position of a patron within a hold queue.
+      tags: [ hold, queue ]
+    - term: item
+      definition: A physical or electronic copy of a bibliographic record held in the catalog.
+      tags: [ koha, catalog, holdings ]
+    - term: biblio_id
+      definition: Internal identifier of the parent bibliographic record for an item.
+      tags: [ item, catalog ]
+    - term: barcode
+      definition: The scannable identifier of an item, surfaced via the item external_id field.
+      tags: [ item, identifier ]
+    - term: callnumber
+      definition: The classification call number used to shelve an item.
+      tags: [ item, classification ]
+    - term: item_type
+      definition: A code-driven classification of items governing loan rules, fees and bookability.
+      tags: [ koha, classification, circulation ]
+    - term: library
+      definition: A branch or location within the library system, identified by library_id.
+      tags: [ koha, organization, branch ]
+    - term: not_for_loan_status
+      definition: An authorized value indicating whether and why an item or item type cannot be loaned.
+      tags: [ item, item_type, circulation ]

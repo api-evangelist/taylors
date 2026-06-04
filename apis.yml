@@ -43,6 +43,28 @@ apis:
     properties:
       - type: Documentation
         url: https://librarycatalogue.taylors.edu.my/api/v1/
+      - type: OpenAPI
+        url: openapi/taylors-library-rest.yaml
+      - type: JSONSchema
+        url: json-schema/taylors-patron-schema.json
+      - type: JSONSchema
+        url: json-schema/taylors-checkout-schema.json
+      - type: JSONSchema
+        url: json-schema/taylors-hold-schema.json
+      - type: JSONSchema
+        url: json-schema/taylors-item-schema.json
+      - type: JSONStructure
+        url: json-structure/taylors-patron-structure.json
+      - type: JSONStructure
+        url: json-structure/taylors-item-structure.json
+      - type: Examples
+        url: examples/taylors-getPatron-example.json
+      - type: Rules
+        url: rules/taylors-rules.yml
+      - type: Vocabulary
+        url: vocabulary/taylors-vocabulary.yml
+      - type: JSONLD
+        url: json-ld/taylors-context.jsonld
   - aid: taylors:library-oai
     name: Taylor's Library OAI-PMH
     description: >-

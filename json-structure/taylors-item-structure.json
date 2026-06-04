@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/taylors/main/json-structure/taylors-item-structure.json",
+  "name": "Item",
+  "description": "JSON Structure for a Koha catalog item from the Taylor's Library REST API.",
+  "type": "object",
+  "properties": {
+    "item_id": { "type": "int64", "description": "Internal item identifier" },
+    "biblio_id": { "type": "int64", "description": "Parent bibliographic record identifier" },
+    "external_id": { "type": ["string", "null"], "maxLength": 20, "description": "Barcode" },
+    "callnumber": { "type": ["string", "null"], "maxLength": 255 },
+    "home_library_id": { "type": ["string", "null"], "maxLength": 10 },
+    "holding_library_id": { "type": ["string", "null"], "maxLength": 10 },
+    "item_type_id": { "type": ["string", "null"], "maxLength": 10 },
+    "collection_code": { "type": ["string", "null"], "maxLength": 80 },
+    "location": { "type": ["string", "null"], "maxLength": 80 },
+    "copy_number": { "type": ["string", "null"], "maxLength": 32 },
+    "acquisition_date": { "type": ["string", "null"], "format": "date" },
+    "replacement_price": { "type": ["double", "null"] },
+    "purchase_price": { "type": ["double", "null"] },
+    "checkouts_count": { "type": ["int32", "null"] },
+    "holds_count": { "type": ["int32", "null"] },
+    "renewals_count": { "type": ["int32", "null"] },
+    "not_for_loan_status": { "type": "int32" },
+    "last_seen_date": { "type": ["string", "null"], "format": "datetime" },
+    "uri": { "type": ["string", "null"] },
+    "timestamp": { "type": "string", "format": "datetime" }
+  },
+  "required": ["biblio_id"]
+}

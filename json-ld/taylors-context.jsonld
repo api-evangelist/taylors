@@ -1,0 +1,80 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "taylors": "https://librarycatalogue.taylors.edu.my/ns#",
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+    "identifier": "schema:identifier",
+    "Organization": "schema:CollegeOrUniversity",
+    "Library": "schema:Library",
+    "Patron": {
+      "@id": "schema:Person",
+      "@context": {
+        "patron_id": "schema:identifier",
+        "cardnumber": "schema:identifier",
+        "firstname": "schema:givenName",
+        "surname": "schema:familyName",
+        "email": "schema:email",
+        "phone": "schema:telephone",
+        "date_of_birth": "schema:birthDate",
+        "category_id": "taylors:patronCategory",
+        "library_id": "taylors:homeLibrary"
+      }
+    },
+    "Item": {
+      "@id": "schema:CreativeWork",
+      "@context": {
+        "item_id": "schema:identifier",
+        "biblio_id": "taylors:bibliographicRecord",
+        "external_id": "schema:gtin",
+        "callnumber": "taylors:callNumber",
+        "item_type_id": "taylors:itemType",
+        "home_library_id": "taylors:homeLibrary",
+        "location": "taylors:shelvingLocation",
+        "acquisition_date": "schema:dateCreated",
+        "uri": "schema:url"
+      }
+    },
+    "Checkout": {
+      "@id": "schema:LendAction",
+      "@context": {
+        "checkout_id": "schema:identifier",
+        "patron_id": "taylors:borrower",
+        "item_id": "taylors:loanedItem",
+        "checkout_date": "schema:startTime",
+        "due_date": "schema:endTime",
+        "checkin_date": "taylors:returnedDate"
+      }
+    },
+    "Hold": {
+      "@id": "schema:ReserveAction",
+      "@context": {
+        "hold_id": "schema:identifier",
+        "patron_id": "taylors:borrower",
+        "biblio_id": "taylors:bibliographicRecord",
+        "item_id": "taylors:reservedItem",
+        "pickup_library_id": "taylors:pickupLibrary",
+        "hold_date": "schema:startTime",
+        "expiration_date": "schema:expires",
+        "priority": "taylors:queuePriority"
+      }
+    },
+    "ItemType": {
+      "@id": "schema:DefinedTerm",
+      "@context": {
+        "item_type_id": "schema:termCode",
+        "description": "schema:description"
+      }
+    },
+    "institution": {
+      "@id": "taylors:institution",
+      "@type": "schema:CollegeOrUniversity"
+    }
+  },
+  "@type": "Organization",
+  "name": "Taylor's University",
+  "url": "https://university.taylors.edu.my/en.html",
+  "description": "A private research university in Subang Jaya, Selangor, Malaysia, whose library catalog runs on the Koha integrated library system and exposes a public REST API."
+}
