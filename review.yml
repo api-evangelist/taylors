@@ -1,0 +1,48 @@
+---
+name: Taylor's University
+description: Taylor's University public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/taylors/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 3
+    summary: >-
+      No formal/branded developer portal, SDKs, public sign-up, or status page,
+      but four real machine interfaces were verified live: the Koha library
+      catalog exposes a REST API (/api/v1 OpenAPI spec retrievable) and an
+      OAI-PMH 2.0 provider (Identify -> "Taylor's Library"); the DSpace CRIS
+      e-Repository exposes a HAL+JSON REST API (/server/api -> cris-2022.01.01)
+      and an OAI-PMH 2.0 provider (Identify -> "Taylor's University Library",
+      OpenAIRE CERIF). GitHub org exists but has no public repos. Student portals
+      (Taylor's Online, TOPAS, Campus Central) are authenticated apps, not
+      documented public APIs. No endpoints were fabricated; only observed URLs
+      are recorded below.
+    endpoints:
+      - url: https://librarycatalogue.taylors.edu.my/api/v1/
+        status: 200
+        note: Koha REST API OpenAPI/Swagger spec publicly retrievable.
+      - url: https://librarycatalogue.taylors.edu.my/cgi-bin/koha/oai.pl?verb=Identify
+        status: 200
+        note: Koha OAI-PMH 2.0 Identify returns "Taylor's Library".
+      - url: https://librarycatalogue.taylors.edu.my/
+        status: 200
+        note: Koha OPAC catalog; Entra ID (Taylor's SSO) login integrated.
+      - url: https://irepo.taylors.edu.my/server/api
+        status: 200
+        note: DSpace CRIS REST root, HAL+JSON, identifies cris-2022.01.01.
+      - url: https://irepo.taylors.edu.my/server/oai/request?verb=Identify
+        status: 200
+        note: DSpace OAI-PMH 2.0 Identify -> "Taylor's University Library", OpenAIRE CERIF.
+      - url: https://irepo.taylors.edu.my/oai/request?verb=Identify
+        status: 404
+        note: Legacy DSpace OAI path not present; live path is /server/oai/request.
+      - url: https://irepo.taylors.edu.my/
+        status: 200
+        note: DSpace e-Repository web UI for research outputs.
+      - url: https://university.taylors.edu.my/en.html
+        status: 200
+        note: Official university website (states Top 253 World / Top 30 Asia).
+      - url: https://github.com/Taylors-University
+        status: 200
+        note: Official GitHub org exists but has no public repositories.

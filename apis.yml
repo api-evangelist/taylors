@@ -1,0 +1,105 @@
+---
+aid: taylors
+name: Taylor's University
+description: >-
+  Taylor's University is a private research university based in Subang Jaya,
+  Selangor, Malaysia, and ranked #251 in the QS World University Rankings 2025.
+  It does not operate a formal, branded developer portal, but several real,
+  publicly reachable machine interfaces exist across its library and research
+  infrastructure. The Taylor's Library catalog runs on Koha (exposing a Koha
+  REST API and an OAI-PMH data provider), and the Taylor's e-Repository runs on
+  DSpace CRIS (exposing a HAL+JSON REST API and an OAI-PMH endpoint). Identity
+  is federated through Microsoft Entra ID. The institution's GitHub organization
+  exists but currently has no public repositories.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/taylors/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Library
+  - Institutional Repository
+  - Open Data
+  - Malaysia
+  - Asia
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: taylors:library-rest
+    name: Taylor's Library Koha REST API
+    description: >-
+      The Taylor's Library catalog runs on the open-source Koha integrated
+      library system, which ships a versioned REST API under /api/v1 (patrons,
+      items, checkouts, holds, biblios, etc.). The OpenAPI/Swagger specification
+      is publicly retrievable; most data-modifying and patron endpoints require
+      authentication.
+    humanURL: https://librarycatalogue.taylors.edu.my/
+    baseURL: https://librarycatalogue.taylors.edu.my/api/v1
+    tags: [ Library, Koha, REST, Catalog ]
+    properties:
+      - type: Documentation
+        url: https://librarycatalogue.taylors.edu.my/api/v1/
+  - aid: taylors:library-oai
+    name: Taylor's Library OAI-PMH
+    description: >-
+      OAI-PMH 2.0 data provider exposed by the Koha-powered Taylor's Library
+      catalog for harvesting bibliographic metadata. The Identify response
+      returns repository name "Taylor's Library" with earliest records dating to
+      December 2019.
+    humanURL: https://librarycatalogue.taylors.edu.my/
+    baseURL: https://librarycatalogue.taylors.edu.my/cgi-bin/koha/oai.pl
+    tags: [ Library, OAI-PMH, Metadata, Harvesting ]
+    properties:
+      - type: Documentation
+        url: https://librarycatalogue.taylors.edu.my/cgi-bin/koha/oai.pl?verb=Identify
+  - aid: taylors:irepo-rest
+    name: Taylor's e-Repository DSpace REST API
+    description: >-
+      The Taylor's e-Repository runs on DSpace CRIS (cris-2022.01.01) and exposes
+      a HATEOAS HAL+JSON REST API at /server/api covering communities,
+      collections, items, bundles, discovery, statistics, ORCID and external
+      sources. It collects research abstracts, theses, dissertations, academic
+      profiles, articles and creative works from Taylor's faculty, staff and
+      students.
+    humanURL: https://irepo.taylors.edu.my/
+    baseURL: https://irepo.taylors.edu.my/server/api
+    tags: [ Repository, DSpace, REST, Research, CRIS ]
+    properties:
+      - type: Documentation
+        url: https://irepo.taylors.edu.my/server/api
+  - aid: taylors:irepo-oai
+    name: Taylor's e-Repository OAI-PMH
+    description: >-
+      OAI-PMH 2.0 data provider for the DSpace CRIS e-Repository, advertising
+      repository name "Taylor's University Library" and OpenAIRE CERIF profile
+      compliance for research-output discovery and aggregation.
+    humanURL: https://irepo.taylors.edu.my/
+    baseURL: https://irepo.taylors.edu.my/server/oai/request
+    tags: [ Repository, OAI-PMH, Metadata, OpenAIRE, Harvesting ]
+    properties:
+      - type: Documentation
+        url: https://irepo.taylors.edu.my/server/oai/request?verb=Identify
+common:
+  - type: Website
+    url: https://university.taylors.edu.my/en.html
+  - type: GitHub
+    url: https://github.com/Taylors-University
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/taylor's-university/
+  - type: Authentication
+    url: https://librarycatalogue.taylors.edu.my/
+  - type: Plans
+    url: plans/taylors-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/taylors-rate-limits.yml
+  - type: FinOps
+    url: finops/taylors-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
