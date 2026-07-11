@@ -106,6 +106,10 @@ apis:
       - type: Documentation
         url: https://irepo.taylors.edu.my/server/oai/request?verb=Identify
 common:
+  - type: Authentication
+    url: authentication/taylors-authentication.yml
+  - type: OAuthScopes
+    url: scopes/taylors-scopes.yml
   - type: Website
     url: https://university.taylors.edu.my/en.html
   - type: GitHub

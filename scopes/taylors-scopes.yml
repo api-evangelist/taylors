@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/taylors-library-rest.yaml
+docs: https://librarycatalogue.taylors.edu.my/api/v1/.html
+note: >-
+  The Koha REST API behind the Taylor's Library catalog supports OAuth2 client
+  credentials only and does not use OAuth scopes — API clients inherit the
+  permissions of the patron they are tied to, and the API documentation states
+  "We do not yet support OAuth Scopes or the Authorization Code grant flow"
+  (https://librarycatalogue.taylors.edu.my/api/v1/.html).
+schemes:
+- name: oauth2ClientCredentials
+  source: openapi/taylors-library-rest.yaml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://librarycatalogue.taylors.edu.my/api/v1/oauth/token
+scopes: []
