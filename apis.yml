@@ -106,6 +106,8 @@ apis:
       - type: Documentation
         url: https://irepo.taylors.edu.my/server/oai/request?verb=Identify
 common:
+  - type: AgenticAccess
+    url: agentic-access/taylors-agentic-access.yml
   - type: DomainSecurity
     url: security/taylors-domain-security.yml
   - type: Authentication
