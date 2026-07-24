@@ -1,0 +1,235 @@
+openapi: 3.0.3
+info:
+  title: Taylor's Library Koha REST checkouts patrons API
+  description: OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1. This document was converted to OpenAPI 3.0 from the live, publicly retrievable Swagger 2.0 definition at https://librarycatalogue.taylors.edu.my/api/v1/. Only resources whose object schemas were confirmed present in the live definition (patron, checkout, hold, item, library, item_type) are described here. Collection and resource endpoints require authentication (HTTP 401 is returned to anonymous clients); the specification document itself is public.
+  version: v1
+  contact:
+    name: Taylor's University Library
+    url: https://librarycatalogue.taylors.edu.my/
+servers:
+- url: https://librarycatalogue.taylors.edu.my/api/v1
+  description: Taylor's Library Koha REST API (basePath /api/v1)
+security:
+- basicAuth: []
+- oauth2ClientCredentials: []
+tags:
+- name: patrons
+  description: Patron (borrower) records
+paths:
+  /patrons:
+    get:
+      tags:
+      - patrons
+      operationId: listPatrons
+      summary: List patrons
+      responses:
+        '200':
+          description: A list of patrons
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/patron'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /patrons/{patron_id}:
+    parameters:
+    - $ref: '#/components/parameters/patron_id_pp'
+    get:
+      tags:
+      - patrons
+      operationId: getPatron
+      summary: Get patron
+      responses:
+        '200':
+          description: A patron
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/patron'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Forbidden:
+      description: Access forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+  schemas:
+    patron:
+      type: object
+      additionalProperties: false
+      required:
+      - patron_id
+      - category_id
+      - library_id
+      - lang
+      properties:
+        patron_id:
+          type: integer
+          description: Internal patron identifier
+        cardnumber:
+          type: string
+          nullable: true
+          maxLength: 32
+          description: library assigned user identifier
+        category_id:
+          type: string
+          maxLength: 10
+          description: Internal identifier for the patron's category
+        library_id:
+          type: string
+          maxLength: 10
+          description: Internal identifier for the patron's home library
+        firstname:
+          type: string
+          nullable: true
+          description: patron's first name
+        surname:
+          type: string
+          nullable: true
+          description: patron's surname or last name
+        middle_name:
+          type: string
+          nullable: true
+          description: patron's middle name
+        preferred_name:
+          type: string
+          nullable: true
+          description: patron's preferred name
+        title:
+          type: string
+          nullable: true
+          description: patron's title
+        email:
+          type: string
+          nullable: true
+          description: primary email address for patron's primary address
+        secondary_email:
+          type: string
+          nullable: true
+          description: secondary email address for patron's primary address
+        phone:
+          type: string
+          nullable: true
+          description: primary phone number for patron's primary address
+        mobile:
+          type: string
+          nullable: true
+          description: the other phone number for patron's primary address
+        date_of_birth:
+          type: string
+          format: date
+          nullable: true
+          description: patron's date of birth
+        date_enrolled:
+          type: string
+          format: date
+          nullable: true
+          description: date the patron was added to Koha
+        expiry_date:
+          type: string
+          format: date
+          nullable: true
+          description: date the patron's card is set to expire
+        address:
+          type: string
+          nullable: true
+          description: first address line of patron's primary address
+        city:
+          type: string
+          nullable: true
+          description: city or town of patron's primary address
+        state:
+          type: string
+          nullable: true
+          description: state or province of patron's primary address
+        postal_code:
+          type: string
+          nullable: true
+          description: zip or postal code of patron's primary address
+        country:
+          type: string
+          nullable: true
+          description: country of patron's primary address
+        lang:
+          type: string
+          maxLength: 25
+          description: lang to use to send notices to this patron
+        checkouts_count:
+          type: integer
+          nullable: true
+          description: Number of checkouts
+        overdues_count:
+          type: integer
+          nullable: true
+          description: Number of overdued checkouts
+        account_balance:
+          type: number
+          nullable: true
+          description: Balance of the patron's account
+        anonymized:
+          type: boolean
+          readOnly: true
+          description: If the patron has been anonymized
+        expired:
+          type: boolean
+          readOnly: true
+          description: If patron is expired
+        restricted:
+          type: boolean
+          readOnly: true
+          description: If any restriction applies to the patron
+        updated_on:
+          type: string
+          format: date-time
+          nullable: true
+          description: last modification date of the patron
+    error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        error_code:
+          type: string
+          description: Error code
+      required:
+      - error
+  parameters:
+    patron_id_pp:
+      name: patron_id
+      in: path
+      required: true
+      description: Internal patron identifier
+      schema:
+        type: integer
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    oauth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://librarycatalogue.taylors.edu.my/api/v1/oauth/token
+          scopes: {}

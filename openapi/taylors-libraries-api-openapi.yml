@@ -1,0 +1,179 @@
+openapi: 3.0.3
+info:
+  title: Taylor's Library Koha REST checkouts libraries API
+  description: OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1. This document was converted to OpenAPI 3.0 from the live, publicly retrievable Swagger 2.0 definition at https://librarycatalogue.taylors.edu.my/api/v1/. Only resources whose object schemas were confirmed present in the live definition (patron, checkout, hold, item, library, item_type) are described here. Collection and resource endpoints require authentication (HTTP 401 is returned to anonymous clients); the specification document itself is public.
+  version: v1
+  contact:
+    name: Taylor's University Library
+    url: https://librarycatalogue.taylors.edu.my/
+servers:
+- url: https://librarycatalogue.taylors.edu.my/api/v1
+  description: Taylor's Library Koha REST API (basePath /api/v1)
+security:
+- basicAuth: []
+- oauth2ClientCredentials: []
+tags:
+- name: libraries
+  description: Libraries (branches)
+paths:
+  /libraries:
+    get:
+      tags:
+      - libraries
+      operationId: listLibraries
+      summary: List libraries
+      responses:
+        '200':
+          description: A list of libraries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/library'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /libraries/{library_id}:
+    parameters:
+    - name: library_id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - libraries
+      operationId: getLibrary
+      summary: Get library
+      responses:
+        '200':
+          description: A library
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/library'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+  schemas:
+    library:
+      type: object
+      additionalProperties: false
+      required:
+      - library_id
+      - name
+      properties:
+        library_id:
+          type: string
+          minLength: 1
+          maxLength: 10
+          description: internally assigned library identifier
+        name:
+          type: string
+          description: Printable name of library
+        address1:
+          type: string
+          nullable: true
+          description: the first address line of the library
+        address2:
+          type: string
+          nullable: true
+          description: the second address line of the library
+        address3:
+          type: string
+          nullable: true
+          description: the third address line of the library
+        city:
+          type: string
+          nullable: true
+          description: the city or province of the library
+        state:
+          type: string
+          nullable: true
+          description: the regional state of the library
+        postal_code:
+          type: string
+          nullable: true
+          maxLength: 25
+          description: the postal code of the library
+        country:
+          type: string
+          nullable: true
+          description: the country of the library
+        phone:
+          type: string
+          nullable: true
+          description: the primary phone of the library
+        fax:
+          type: string
+          nullable: true
+          description: the fax number of the library
+        email:
+          type: string
+          nullable: true
+          description: the primary email address of the library
+        url:
+          type: string
+          nullable: true
+          description: the URL for your library or branch's website
+        ip:
+          type: string
+          nullable: true
+          maxLength: 15
+          description: the IP address for your library or branch
+        notes:
+          type: string
+          nullable: true
+          description: notes related to your library or branch
+        marc_org_code:
+          type: string
+          nullable: true
+          maxLength: 16
+          description: MARC Organization Code
+        geolocation:
+          type: string
+          nullable: true
+          maxLength: 255
+          description: geolocation of your library
+        pickup_location:
+          type: boolean
+          description: If the library can act as a pickup location
+        public:
+          type: boolean
+          description: If the library is visible to the public
+    error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        error_code:
+          type: string
+          description: Error code
+      required:
+      - error
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    oauth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://librarycatalogue.taylors.edu.my/api/v1/oauth/token
+          scopes: {}

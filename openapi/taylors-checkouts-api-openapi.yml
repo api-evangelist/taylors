@@ -1,0 +1,158 @@
+openapi: 3.0.3
+info:
+  title: Taylor's Library Koha REST checkouts API
+  description: OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1. This document was converted to OpenAPI 3.0 from the live, publicly retrievable Swagger 2.0 definition at https://librarycatalogue.taylors.edu.my/api/v1/. Only resources whose object schemas were confirmed present in the live definition (patron, checkout, hold, item, library, item_type) are described here. Collection and resource endpoints require authentication (HTTP 401 is returned to anonymous clients); the specification document itself is public.
+  version: v1
+  contact:
+    name: Taylor's University Library
+    url: https://librarycatalogue.taylors.edu.my/
+servers:
+- url: https://librarycatalogue.taylors.edu.my/api/v1
+  description: Taylor's Library Koha REST API (basePath /api/v1)
+security:
+- basicAuth: []
+- oauth2ClientCredentials: []
+tags:
+- name: checkouts
+  description: Item checkouts (issues)
+paths:
+  /checkouts:
+    get:
+      tags:
+      - checkouts
+      operationId: listCheckouts
+      summary: List checkouts
+      responses:
+        '200':
+          description: A list of checkouts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/checkout'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /checkouts/{checkout_id}:
+    parameters:
+    - name: checkout_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      tags:
+      - checkouts
+      operationId: getCheckout
+      summary: Get checkout
+      responses:
+        '200':
+          description: A checkout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/checkout'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+  schemas:
+    error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        error_code:
+          type: string
+          description: Error code
+      required:
+      - error
+    checkout:
+      type: object
+      additionalProperties: false
+      properties:
+        checkout_id:
+          type: integer
+          description: internally assigned checkout identifier
+        patron_id:
+          type: integer
+          description: Internal patron identifier
+        item_id:
+          type: integer
+          nullable: true
+        library_id:
+          type: string
+          nullable: true
+          description: code of the library the item was checked out
+        checkout_date:
+          type: string
+          format: date-time
+          description: Date the item was issued
+        due_date:
+          type: string
+          format: date-time
+          description: Due date
+        checkin_date:
+          type: string
+          format: date-time
+          nullable: true
+          description: Date the item was returned
+        last_renewed_date:
+          type: string
+          format: date-time
+          nullable: true
+          description: Date the item was last renewed
+        renewals_count:
+          type: integer
+          nullable: true
+          description: Number of renewals
+        unseen_renewals:
+          type: integer
+          nullable: true
+          description: Number of consecutive unseen renewals
+        auto_renew:
+          type: boolean
+          description: Auto renewal
+        auto_renew_error:
+          type: string
+          nullable: true
+          description: Auto renewal error
+        onsite_checkout:
+          type: boolean
+          description: On site checkout
+        external_id:
+          type: string
+          nullable: true
+          description: other identifier of checked out item f.e. barcode
+        note:
+          type: string
+          nullable: true
+          description: Issue note text
+        timestamp:
+          type: string
+          description: Last update time
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    oauth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://librarycatalogue.taylors.edu.my/api/v1/oauth/token
+          scopes: {}

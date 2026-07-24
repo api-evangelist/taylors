@@ -1,0 +1,121 @@
+openapi: 3.0.3
+info:
+  title: Taylor's Library Koha REST checkouts item_types API
+  description: OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1. This document was converted to OpenAPI 3.0 from the live, publicly retrievable Swagger 2.0 definition at https://librarycatalogue.taylors.edu.my/api/v1/. Only resources whose object schemas were confirmed present in the live definition (patron, checkout, hold, item, library, item_type) are described here. Collection and resource endpoints require authentication (HTTP 401 is returned to anonymous clients); the specification document itself is public.
+  version: v1
+  contact:
+    name: Taylor's University Library
+    url: https://librarycatalogue.taylors.edu.my/
+servers:
+- url: https://librarycatalogue.taylors.edu.my/api/v1
+  description: Taylor's Library Koha REST API (basePath /api/v1)
+security:
+- basicAuth: []
+- oauth2ClientCredentials: []
+tags:
+- name: item_types
+  description: Item types
+paths:
+  /item_types:
+    get:
+      tags:
+      - item_types
+      operationId: listItemTypes
+      summary: List item types
+      responses:
+        '200':
+          description: A list of item types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/item_type'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        error_code:
+          type: string
+          description: Error code
+      required:
+      - error
+    item_type:
+      type: object
+      additionalProperties: false
+      required:
+      - item_type_id
+      properties:
+        item_type_id:
+          type: string
+          minLength: 1
+          maxLength: 10
+          readOnly: true
+          description: Unique key, a code associated with the item type
+        description:
+          type: string
+          description: A plain text explanation of the item type
+        parent_type:
+          type: string
+          nullable: true
+          description: Unique key, a code associated with the parent item type
+        rentalcharge:
+          type: number
+          nullable: true
+          description: The amount charged when this item is checked out
+        daily_rental_charge:
+          type: number
+          nullable: true
+          description: The amount charged for each day between checkout and due date
+        hourly_rental_charge:
+          type: number
+          nullable: true
+          description: The amount charged for each hour between checkout and due date
+        default_replacement_cost:
+          type: number
+          nullable: true
+          description: Default replacement cost
+        process_fee:
+          type: number
+          nullable: true
+          description: Default processing fee
+        not_for_loan_status:
+          type: boolean
+          description: If items of this type are not for loan
+        hide_in_opac:
+          type: boolean
+          description: Hide the item type from the search options in OPAC
+        bookable:
+          type: boolean
+          description: Whether this item type is normally bookable
+        image_url:
+          type: string
+          nullable: true
+          description: URL for the item type icon
+        summary:
+          type: string
+          nullable: true
+          description: Information from the summary field, may include HTML
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    oauth2ClientCredentials:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://librarycatalogue.taylors.edu.my/api/v1/oauth/token
+          scopes: {}
