@@ -12,9 +12,22 @@ description: >-
   is federated through Microsoft Entra ID. The institution's GitHub organization
   exists but currently has no public repositories.
 type: Index
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/taylors.png
 url: https://raw.githubusercontent.com/api-evangelist/taylors/refs/heads/main/apis.yml
 tags:
   - Education
@@ -29,82 +42,248 @@ created: '2026-06-03'
 modified: '2026-06-03'
 specificationVersion: '0.19'
 apis:
-  - aid: taylors:library-rest
-    name: Taylor's Library Koha REST API
-    description: >-
-      The Taylor's Library catalog runs on the open-source Koha integrated
-      library system, which ships a versioned REST API under /api/v1 (patrons,
-      items, checkouts, holds, biblios, etc.). The OpenAPI/Swagger specification
-      is publicly retrievable; most data-modifying and patron endpoints require
-      authentication.
-    humanURL: https://librarycatalogue.taylors.edu.my/
-    baseURL: https://librarycatalogue.taylors.edu.my/api/v1
-    tags: [ Library, Koha, REST, Catalog ]
-    properties:
-      - type: Documentation
-        url: https://librarycatalogue.taylors.edu.my/api/v1/
-      - type: OpenAPI
-        url: openapi/taylors-library-rest.yaml
-      - type: JSONSchema
-        url: json-schema/taylors-patron-schema.json
-      - type: JSONSchema
-        url: json-schema/taylors-checkout-schema.json
-      - type: JSONSchema
-        url: json-schema/taylors-hold-schema.json
-      - type: JSONSchema
-        url: json-schema/taylors-item-schema.json
-      - type: JSONStructure
-        url: json-structure/taylors-patron-structure.json
-      - type: JSONStructure
-        url: json-structure/taylors-item-structure.json
-      - type: Examples
-        url: examples/taylors-getPatron-example.json
-      - type: Rules
-        url: rules/taylors-rules.yml
-      - type: Vocabulary
-        url: vocabulary/taylors-vocabulary.yml
-      - type: JSONLD
-        url: json-ld/taylors-context.jsonld
-  - aid: taylors:library-oai
-    name: Taylor's Library OAI-PMH
-    description: >-
-      OAI-PMH 2.0 data provider exposed by the Koha-powered Taylor's Library
-      catalog for harvesting bibliographic metadata. The Identify response
-      returns repository name "Taylor's Library" with earliest records dating to
-      December 2019.
-    humanURL: https://librarycatalogue.taylors.edu.my/
-    baseURL: https://librarycatalogue.taylors.edu.my/cgi-bin/koha/oai.pl
-    tags: [ Library, OAI-PMH, Metadata, Harvesting ]
-    properties:
-      - type: Documentation
-        url: https://librarycatalogue.taylors.edu.my/cgi-bin/koha/oai.pl?verb=Identify
-  - aid: taylors:irepo-rest
-    name: Taylor's e-Repository DSpace REST API
-    description: >-
-      The Taylor's e-Repository runs on DSpace CRIS (cris-2022.01.01) and exposes
-      a HATEOAS HAL+JSON REST API at /server/api covering communities,
-      collections, items, bundles, discovery, statistics, ORCID and external
-      sources. It collects research abstracts, theses, dissertations, academic
-      profiles, articles and creative works from Taylor's faculty, staff and
-      students.
-    humanURL: https://irepo.taylors.edu.my/
-    baseURL: https://irepo.taylors.edu.my/server/api
-    tags: [ Repository, DSpace, REST, Research, CRIS ]
-    properties:
-      - type: Documentation
-        url: https://irepo.taylors.edu.my/server/api
-  - aid: taylors:irepo-oai
-    name: Taylor's e-Repository OAI-PMH
-    description: >-
-      OAI-PMH 2.0 data provider for the DSpace CRIS e-Repository, advertising
-      repository name "Taylor's University Library" and OpenAIRE CERIF profile
-      compliance for research-output discovery and aggregation.
-    humanURL: https://irepo.taylors.edu.my/
-    baseURL: https://irepo.taylors.edu.my/server/oai/request
-    tags: [ Repository, OAI-PMH, Metadata, OpenAIRE, Harvesting ]
-    properties:
-      - type: Documentation
-        url: https://irepo.taylors.edu.my/server/oai/request?verb=Identify
+- aid: taylors:library-oai
+  name: Taylor's Library OAI-PMH
+  description: >-
+    OAI-PMH 2.0 data provider exposed by the Koha-powered Taylor's Library catalog for harvesting bibliographic
+    metadata. The Identify response returns repository name "Taylor's Library" with earliest records dating
+    to December 2019.
+  humanURL: https://librarycatalogue.taylors.edu.my/
+  baseURL: https://librarycatalogue.taylors.edu.my/cgi-bin/koha/oai.pl
+  tags:
+  - Library
+  - OAI-PMH
+  - Metadata
+  - Harvesting
+  properties:
+  - type: Documentation
+    url: https://librarycatalogue.taylors.edu.my/cgi-bin/koha/oai.pl?verb=Identify
+- aid: taylors:irepo-rest
+  name: Taylor's e-Repository DSpace REST API
+  description: >-
+    The Taylor's e-Repository runs on DSpace CRIS (cris-2022.01.01) and exposes a HATEOAS HAL+JSON REST
+    API at /server/api covering communities, collections, items, bundles, discovery, statistics, ORCID
+    and external sources. It collects research abstracts, theses, dissertations, academic profiles, articles
+    and creative works from Taylor's faculty, staff and students.
+  humanURL: https://irepo.taylors.edu.my/
+  baseURL: https://irepo.taylors.edu.my/server/api
+  tags:
+  - Repository
+  - DSpace
+  - REST
+  - Research
+  - CRIS
+  properties:
+  - type: Documentation
+    url: https://irepo.taylors.edu.my/server/api
+- aid: taylors:irepo-oai
+  name: Taylor's e-Repository OAI-PMH
+  description: >-
+    OAI-PMH 2.0 data provider for the DSpace CRIS e-Repository, advertising repository name "Taylor's
+    University Library" and OpenAIRE CERIF profile compliance for research-output discovery and aggregation.
+  humanURL: https://irepo.taylors.edu.my/
+  baseURL: https://irepo.taylors.edu.my/server/oai/request
+  tags:
+  - Repository
+  - OAI-PMH
+  - Metadata
+  - OpenAIRE
+  - Harvesting
+  properties:
+  - type: Documentation
+    url: https://irepo.taylors.edu.my/server/oai/request?verb=Identify
+- aid: taylors:taylors-checkouts-api
+  name: Taylor's University checkouts API
+  description: Item checkouts (issues)
+  humanURL: https://librarycatalogue.taylors.edu.my/
+  baseURL: https://librarycatalogue.taylors.edu.my/api/v1
+  tags:
+  - checkouts
+  properties:
+  - type: OpenAPI
+    url: openapi/taylors-checkouts-api-openapi.yml
+  - type: Documentation
+    url: https://librarycatalogue.taylors.edu.my/api/v1/
+  - type: JSONSchema
+    url: json-schema/taylors-patron-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-checkout-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-hold-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-item-schema.json
+  - type: JSONStructure
+    url: json-structure/taylors-patron-structure.json
+  - type: JSONStructure
+    url: json-structure/taylors-item-structure.json
+  - type: Examples
+    url: examples/taylors-getPatron-example.json
+  - type: Rules
+    url: rules/taylors-rules.yml
+  - type: Vocabulary
+    url: vocabulary/taylors-vocabulary.yml
+  - type: JSONLD
+    url: json-ld/taylors-context.jsonld
+- aid: taylors:taylors-holds-api
+  name: Taylor's University holds API
+  description: Holds (reservations)
+  humanURL: https://librarycatalogue.taylors.edu.my/
+  baseURL: https://librarycatalogue.taylors.edu.my/api/v1
+  tags:
+  - holds
+  properties:
+  - type: OpenAPI
+    url: openapi/taylors-holds-api-openapi.yml
+  - type: Documentation
+    url: https://librarycatalogue.taylors.edu.my/api/v1/
+  - type: JSONSchema
+    url: json-schema/taylors-patron-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-checkout-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-hold-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-item-schema.json
+  - type: JSONStructure
+    url: json-structure/taylors-patron-structure.json
+  - type: JSONStructure
+    url: json-structure/taylors-item-structure.json
+  - type: Examples
+    url: examples/taylors-getPatron-example.json
+  - type: Rules
+    url: rules/taylors-rules.yml
+  - type: Vocabulary
+    url: vocabulary/taylors-vocabulary.yml
+  - type: JSONLD
+    url: json-ld/taylors-context.jsonld
+- aid: taylors:taylors-item-types-api
+  name: Taylor's University item_types API
+  description: Item types
+  humanURL: https://librarycatalogue.taylors.edu.my/
+  baseURL: https://librarycatalogue.taylors.edu.my/api/v1
+  tags:
+  - item_types
+  properties:
+  - type: OpenAPI
+    url: openapi/taylors-item-types-api-openapi.yml
+  - type: Documentation
+    url: https://librarycatalogue.taylors.edu.my/api/v1/
+  - type: JSONSchema
+    url: json-schema/taylors-patron-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-checkout-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-hold-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-item-schema.json
+  - type: JSONStructure
+    url: json-structure/taylors-patron-structure.json
+  - type: JSONStructure
+    url: json-structure/taylors-item-structure.json
+  - type: Examples
+    url: examples/taylors-getPatron-example.json
+  - type: Rules
+    url: rules/taylors-rules.yml
+  - type: Vocabulary
+    url: vocabulary/taylors-vocabulary.yml
+  - type: JSONLD
+    url: json-ld/taylors-context.jsonld
+- aid: taylors:taylors-items-api
+  name: Taylor's University items API
+  description: Catalog items
+  humanURL: https://librarycatalogue.taylors.edu.my/
+  baseURL: https://librarycatalogue.taylors.edu.my/api/v1
+  tags:
+  - items
+  properties:
+  - type: OpenAPI
+    url: openapi/taylors-items-api-openapi.yml
+  - type: Documentation
+    url: https://librarycatalogue.taylors.edu.my/api/v1/
+  - type: JSONSchema
+    url: json-schema/taylors-patron-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-checkout-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-hold-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-item-schema.json
+  - type: JSONStructure
+    url: json-structure/taylors-patron-structure.json
+  - type: JSONStructure
+    url: json-structure/taylors-item-structure.json
+  - type: Examples
+    url: examples/taylors-getPatron-example.json
+  - type: Rules
+    url: rules/taylors-rules.yml
+  - type: Vocabulary
+    url: vocabulary/taylors-vocabulary.yml
+  - type: JSONLD
+    url: json-ld/taylors-context.jsonld
+- aid: taylors:taylors-libraries-api
+  name: Taylor's University libraries API
+  description: Libraries (branches)
+  humanURL: https://librarycatalogue.taylors.edu.my/
+  baseURL: https://librarycatalogue.taylors.edu.my/api/v1
+  tags:
+  - libraries
+  properties:
+  - type: OpenAPI
+    url: openapi/taylors-libraries-api-openapi.yml
+  - type: Documentation
+    url: https://librarycatalogue.taylors.edu.my/api/v1/
+  - type: JSONSchema
+    url: json-schema/taylors-patron-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-checkout-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-hold-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-item-schema.json
+  - type: JSONStructure
+    url: json-structure/taylors-patron-structure.json
+  - type: JSONStructure
+    url: json-structure/taylors-item-structure.json
+  - type: Examples
+    url: examples/taylors-getPatron-example.json
+  - type: Rules
+    url: rules/taylors-rules.yml
+  - type: Vocabulary
+    url: vocabulary/taylors-vocabulary.yml
+  - type: JSONLD
+    url: json-ld/taylors-context.jsonld
+- aid: taylors:taylors-patrons-api
+  name: Taylor's University patrons API
+  description: Patron (borrower) records
+  humanURL: https://librarycatalogue.taylors.edu.my/
+  baseURL: https://librarycatalogue.taylors.edu.my/api/v1
+  tags:
+  - patrons
+  properties:
+  - type: OpenAPI
+    url: openapi/taylors-patrons-api-openapi.yml
+  - type: Documentation
+    url: https://librarycatalogue.taylors.edu.my/api/v1/
+  - type: JSONSchema
+    url: json-schema/taylors-patron-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-checkout-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-hold-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-item-schema.json
+  - type: JSONStructure
+    url: json-structure/taylors-patron-structure.json
+  - type: JSONStructure
+    url: json-structure/taylors-item-structure.json
+  - type: Examples
+    url: examples/taylors-getPatron-example.json
+  - type: Rules
+    url: rules/taylors-rules.yml
+  - type: Vocabulary
+    url: vocabulary/taylors-vocabulary.yml
+  - type: JSONLD
+    url: json-ld/taylors-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/taylors-agentic-access.yml
