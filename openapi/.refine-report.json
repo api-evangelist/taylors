@@ -1,0 +1,24 @@
+{
+  "provider": "taylors",
+  "sources": [
+    "taylors-checkouts-api-openapi.yml",
+    "taylors-holds-api-openapi.yml",
+    "taylors-item-types-api-openapi.yml",
+    "taylors-items-api-openapi.yml",
+    "taylors-libraries-api-openapi.yml",
+    "taylors-patrons-api-openapi.yml"
+  ],
+  "outputs": [
+    "taylors-checkouts-api-openapi.yml",
+    "taylors-holds-api-openapi.yml",
+    "taylors-item-types-api-openapi.yml",
+    "taylors-items-api-openapi.yml",
+    "taylors-libraries-api-openapi.yml",
+    "taylors-patrons-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
