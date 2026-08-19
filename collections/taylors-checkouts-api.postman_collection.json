@@ -1,0 +1,360 @@
+{
+  "item": [
+    {
+      "id": "aabbb0e2-294d-4e49-b140-1bb8d5273306",
+      "name": "checkouts",
+      "description": {
+        "content": "Item checkouts (issues)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1ebefb92-abd6-4916-89c6-786b2fe20909",
+          "name": "List checkouts",
+          "request": {
+            "name": "List checkouts",
+            "description": {},
+            "url": {
+              "path": [
+                "checkouts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93de9e7e-4721-454f-866c-b31f65f19ca6",
+              "name": "A list of checkouts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"checkout_id\": 176,\n    \"patron_id\": 9512,\n    \"item_id\": 9374,\n    \"library_id\": \"string\",\n    \"checkout_date\": \"2008-11-27T14:41:11.469Z\",\n    \"due_date\": \"1973-09-10T23:11:34.247Z\",\n    \"checkin_date\": \"1951-03-13T02:44:12.501Z\",\n    \"last_renewed_date\": \"2009-03-29T10:29:21.437Z\",\n    \"renewals_count\": 83,\n    \"unseen_renewals\": 3568,\n    \"auto_renew\": false,\n    \"auto_renew_error\": \"string\",\n    \"onsite_checkout\": true,\n    \"external_id\": \"string\",\n    \"note\": \"string\",\n    \"timestamp\": \"string\"\n  },\n  {\n    \"checkout_id\": 1158,\n    \"patron_id\": 3275,\n    \"item_id\": 1034,\n    \"library_id\": \"string\",\n    \"checkout_date\": \"1978-07-15T12:41:41.418Z\",\n    \"due_date\": \"2002-11-19T21:41:28.728Z\",\n    \"checkin_date\": \"1972-04-11T17:27:25.334Z\",\n    \"last_renewed_date\": \"1965-04-04T19:38:14.080Z\",\n    \"renewals_count\": 7754,\n    \"unseen_renewals\": 64,\n    \"auto_renew\": true,\n    \"auto_renew_error\": \"string\",\n    \"onsite_checkout\": true,\n    \"external_id\": \"string\",\n    \"note\": \"string\",\n    \"timestamp\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75ac9915-393b-479e-bb9f-fb644f8c1e7a",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8fa005b-4df9-4c7a-b9f8-94e21e79d722",
+          "name": "Get checkout",
+          "request": {
+            "name": "Get checkout",
+            "description": {},
+            "url": {
+              "path": [
+                "checkouts",
+                ":checkout_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "checkout_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1742e9dd-3008-46e0-a43b-ab84b4f3c246",
+              "name": "A checkout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkouts",
+                    ":checkout_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "checkout_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"checkout_id\": 288,\n  \"patron_id\": 3999,\n  \"item_id\": 8060,\n  \"library_id\": \"string\",\n  \"checkout_date\": \"1949-06-09T07:53:54.594Z\",\n  \"due_date\": \"1969-05-11T18:34:30.533Z\",\n  \"checkin_date\": \"2002-02-18T01:10:56.324Z\",\n  \"last_renewed_date\": \"1965-04-20T16:55:10.862Z\",\n  \"renewals_count\": 8861,\n  \"unseen_renewals\": 2646,\n  \"auto_renew\": true,\n  \"auto_renew_error\": \"string\",\n  \"onsite_checkout\": false,\n  \"external_id\": \"string\",\n  \"note\": \"string\",\n  \"timestamp\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "148ecf91-407c-45e3-b3d8-1225617b7715",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkouts",
+                    ":checkout_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "checkout_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd5fc2b0-3594-428e-9bc9-344c57184f6b",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkouts",
+                    ":checkout_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "checkout_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://librarycatalogue.taylors.edu.my/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3029ac20-771d-4468-a6fa-890b5d138547",
+    "name": "Taylor's Library Koha REST checkouts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1. This document was converted to OpenAPI 3.0 from the live, publicly retrievable Swagger 2.0 definition at https://librarycatalogue.taylors.edu.my/api/v1/. Only resources whose object schemas were confirmed present in the live definition (patron, checkout, hold, item, library, item_type) are described here. Collection and resource endpoints require authentication (HTTP 401 is returned to anonymous clients); the specification document itself is public.\n\nContact Support:\n Name: Taylor's University Library",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Taylor's Library Koha REST checkouts patrons API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "patrons",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List patrons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://librarycatalogue.taylors.edu.my/api/v1/patrons"
+          },
+          "docs": "List patrons"
+        },
+        {
+          "info": {
+            "name": "Get patron",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://librarycatalogue.taylors.edu.my/api/v1/patrons/:patron_id",
+            "params": [
+              {
+                "name": "patron_id",
+                "value": "",
+                "type": "path",
+                "description": "Internal patron identifier"
+              }
+            ]
+          },
+          "docs": "Get patron"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

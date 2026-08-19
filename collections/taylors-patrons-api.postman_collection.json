@@ -1,0 +1,403 @@
+{
+  "item": [
+    {
+      "id": "789e6499-8e7b-4dca-ae7b-2b39772a97f4",
+      "name": "patrons",
+      "description": {
+        "content": "Patron (borrower) records",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3abd351a-95a8-4338-9201-4924fb6c69a2",
+          "name": "List patrons",
+          "request": {
+            "name": "List patrons",
+            "description": {},
+            "url": {
+              "path": [
+                "patrons"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a46b287-24cc-4c8d-9109-3832d3ea480d",
+              "name": "A list of patrons",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patrons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"patron_id\": 5910,\n    \"category_id\": \"string\",\n    \"library_id\": \"string\",\n    \"lang\": \"string\",\n    \"cardnumber\": \"string\",\n    \"firstname\": \"string\",\n    \"surname\": \"string\",\n    \"middle_name\": \"string\",\n    \"preferred_name\": \"string\",\n    \"title\": \"string\",\n    \"email\": \"string\",\n    \"secondary_email\": \"string\",\n    \"phone\": \"string\",\n    \"mobile\": \"string\",\n    \"date_of_birth\": \"1967-05-01\",\n    \"date_enrolled\": \"1967-03-18\",\n    \"expiry_date\": \"1982-07-02\",\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postal_code\": \"string\",\n    \"country\": \"string\",\n    \"checkouts_count\": 4714,\n    \"overdues_count\": 1855,\n    \"account_balance\": 5792.393454278862,\n    \"anonymized\": true,\n    \"expired\": true,\n    \"restricted\": true,\n    \"updated_on\": \"1965-02-16T16:24:33.194Z\"\n  },\n  {\n    \"patron_id\": 78,\n    \"category_id\": \"string\",\n    \"library_id\": \"string\",\n    \"lang\": \"string\",\n    \"cardnumber\": \"string\",\n    \"firstname\": \"string\",\n    \"surname\": \"string\",\n    \"middle_name\": \"string\",\n    \"preferred_name\": \"string\",\n    \"title\": \"string\",\n    \"email\": \"string\",\n    \"secondary_email\": \"string\",\n    \"phone\": \"string\",\n    \"mobile\": \"string\",\n    \"date_of_birth\": \"1972-09-15\",\n    \"date_enrolled\": \"2001-06-16\",\n    \"expiry_date\": \"1955-12-27\",\n    \"address\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postal_code\": \"string\",\n    \"country\": \"string\",\n    \"checkouts_count\": 9750,\n    \"overdues_count\": 5716,\n    \"account_balance\": 6238.356930413491,\n    \"anonymized\": false,\n    \"expired\": true,\n    \"restricted\": true,\n    \"updated_on\": \"1996-02-15T16:30:32.161Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "277f8d58-6a27-4817-be6d-5eb3d7258056",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patrons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47200f76-b3c3-40fc-be51-23aca27a1401",
+              "name": "Access forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patrons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b5c2596-909d-442d-891b-7856cc5b6427",
+          "name": "Get patron",
+          "request": {
+            "name": "Get patron",
+            "description": {},
+            "url": {
+              "path": [
+                "patrons",
+                ":patron_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "patron_id",
+                  "description": "(Required) Internal patron identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0deee8ed-96e8-4c13-b7d5-0bd322690ce1",
+              "name": "A patron",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patrons",
+                    ":patron_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "patron_id",
+                      "description": "(Required) Internal patron identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patron_id\": 9943,\n  \"category_id\": \"string\",\n  \"library_id\": \"string\",\n  \"lang\": \"string\",\n  \"cardnumber\": \"string\",\n  \"firstname\": \"string\",\n  \"surname\": \"string\",\n  \"middle_name\": \"string\",\n  \"preferred_name\": \"string\",\n  \"title\": \"string\",\n  \"email\": \"string\",\n  \"secondary_email\": \"string\",\n  \"phone\": \"string\",\n  \"mobile\": \"string\",\n  \"date_of_birth\": \"2016-04-05\",\n  \"date_enrolled\": \"2008-04-05\",\n  \"expiry_date\": \"1967-02-10\",\n  \"address\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"postal_code\": \"string\",\n  \"country\": \"string\",\n  \"checkouts_count\": 4070,\n  \"overdues_count\": 491,\n  \"account_balance\": 50.7979781608836,\n  \"anonymized\": false,\n  \"expired\": true,\n  \"restricted\": true,\n  \"updated_on\": \"1972-11-23T08:36:16.550Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74b5215c-0d61-4434-9e74-0e935be11803",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patrons",
+                    ":patron_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "patron_id",
+                      "description": "(Required) Internal patron identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38ffc34f-b5b2-4924-8517-a58b55159fac",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patrons",
+                    ":patron_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "patron_id",
+                      "description": "(Required) Internal patron identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://librarycatalogue.taylors.edu.my/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c30219d7-2168-414d-82a6-4ef5f3a16df6",
+    "name": "Taylor's Library Koha REST checkouts patrons API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1. This document was converted to OpenAPI 3.0 from the live, publicly retrievable Swagger 2.0 definition at https://librarycatalogue.taylors.edu.my/api/v1/. Only resources whose object schemas were confirmed present in the live definition (patron, checkout, hold, item, library, item_type) are described here. Collection and resource endpoints require authentication (HTTP 401 is returned to anonymous clients); the specification document itself is public.\n\nContact Support:\n Name: Taylor's University Library",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,360 @@
+{
+  "item": [
+    {
+      "id": "471a1175-6e3b-4a29-88cb-4d2c68c909fe",
+      "name": "libraries",
+      "description": {
+        "content": "Libraries (branches)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0fce5b46-5f03-40dc-a6e1-4a72dc1d4180",
+          "name": "List libraries",
+          "request": {
+            "name": "List libraries",
+            "description": {},
+            "url": {
+              "path": [
+                "libraries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06df3e2d-5b72-4575-91f8-d82f6f30e259",
+              "name": "A list of libraries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "libraries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"library_id\": \"strin\",\n    \"name\": \"string\",\n    \"address1\": \"string\",\n    \"address2\": \"string\",\n    \"address3\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postal_code\": \"string\",\n    \"country\": \"string\",\n    \"phone\": \"string\",\n    \"fax\": \"string\",\n    \"email\": \"string\",\n    \"url\": \"string\",\n    \"ip\": \"string\",\n    \"notes\": \"string\",\n    \"marc_org_code\": \"string\",\n    \"geolocation\": \"string\",\n    \"pickup_location\": true,\n    \"public\": true\n  },\n  {\n    \"library_id\": \"string\",\n    \"name\": \"string\",\n    \"address1\": \"string\",\n    \"address2\": \"string\",\n    \"address3\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postal_code\": \"string\",\n    \"country\": \"string\",\n    \"phone\": \"string\",\n    \"fax\": \"string\",\n    \"email\": \"string\",\n    \"url\": \"string\",\n    \"ip\": \"string\",\n    \"notes\": \"string\",\n    \"marc_org_code\": \"string\",\n    \"geolocation\": \"string\",\n    \"pickup_location\": false,\n    \"public\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d230f553-7680-45fb-970e-4feffd060449",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "libraries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06b1a544-48cb-422c-b7d0-78b4bdb225c3",
+          "name": "Get library",
+          "request": {
+            "name": "Get library",
+            "description": {},
+            "url": {
+              "path": [
+                "libraries",
+                ":library_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "library_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9241f93-1bf8-47c4-b1e7-9186d33eccd6",
+              "name": "A library",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "libraries",
+                    ":library_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "library_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"library_id\": \"strin\",\n  \"name\": \"string\",\n  \"address1\": \"string\",\n  \"address2\": \"string\",\n  \"address3\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"postal_code\": \"string\",\n  \"country\": \"string\",\n  \"phone\": \"string\",\n  \"fax\": \"string\",\n  \"email\": \"string\",\n  \"url\": \"string\",\n  \"ip\": \"string\",\n  \"notes\": \"string\",\n  \"marc_org_code\": \"string\",\n  \"geolocation\": \"string\",\n  \"pickup_location\": true,\n  \"public\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4130b0e-91d1-48d1-8239-49d7f8087a31",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "libraries",
+                    ":library_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "library_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "971ade76-82af-43c9-baa0-40e80b091d6e",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "libraries",
+                    ":library_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "library_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://librarycatalogue.taylors.edu.my/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4a5d9a22-453c-4d47-a6c7-830445bf0e14",
+    "name": "Taylor's Library Koha REST checkouts libraries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1. This document was converted to OpenAPI 3.0 from the live, publicly retrievable Swagger 2.0 definition at https://librarycatalogue.taylors.edu.my/api/v1/. Only resources whose object schemas were confirmed present in the live definition (patron, checkout, hold, item, library, item_type) are described here. Collection and resource endpoints require authentication (HTTP 401 is returned to anonymous clients); the specification document itself is public.\n\nContact Support:\n Name: Taylor's University Library",
+      "type": "text/plain"
+    }
+  }
+}

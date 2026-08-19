@@ -1,0 +1,360 @@
+{
+  "item": [
+    {
+      "id": "998650fe-f309-4059-873e-d29f3db9eac2",
+      "name": "items",
+      "description": {
+        "content": "Catalog items",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "09222afb-0df7-418b-a1bb-703ad259a4dc",
+          "name": "List items",
+          "request": {
+            "name": "List items",
+            "description": {},
+            "url": {
+              "path": [
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce543017-8c76-48fc-9159-f1aab8c187ed",
+              "name": "A list of items",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"biblio_id\": 9257,\n    \"item_id\": 5939,\n    \"external_id\": \"string\",\n    \"callnumber\": \"string\",\n    \"home_library_id\": \"string\",\n    \"holding_library_id\": \"string\",\n    \"item_type_id\": \"string\",\n    \"collection_code\": \"string\",\n    \"location\": \"string\",\n    \"permanent_location\": \"string\",\n    \"copy_number\": \"string\",\n    \"inventory_number\": \"string\",\n    \"acquisition_date\": \"1987-12-10\",\n    \"replacement_price\": 4583.486930153139,\n    \"purchase_price\": 9028.018938630445,\n    \"public_notes\": \"string\",\n    \"internal_notes\": \"string\",\n    \"checkouts_count\": 9841,\n    \"holds_count\": 5700,\n    \"renewals_count\": 9879,\n    \"not_for_loan_status\": 3641,\n    \"last_seen_date\": \"1991-09-29T21:12:28.244Z\",\n    \"uri\": \"string\",\n    \"timestamp\": \"1957-10-07T06:40:35.924Z\"\n  },\n  {\n    \"biblio_id\": 5423,\n    \"item_id\": 8301,\n    \"external_id\": \"string\",\n    \"callnumber\": \"string\",\n    \"home_library_id\": \"string\",\n    \"holding_library_id\": \"string\",\n    \"item_type_id\": \"string\",\n    \"collection_code\": \"string\",\n    \"location\": \"string\",\n    \"permanent_location\": \"string\",\n    \"copy_number\": \"string\",\n    \"inventory_number\": \"string\",\n    \"acquisition_date\": \"1999-03-25\",\n    \"replacement_price\": 5020.730891987059,\n    \"purchase_price\": 7926.946328605846,\n    \"public_notes\": \"string\",\n    \"internal_notes\": \"string\",\n    \"checkouts_count\": 6299,\n    \"holds_count\": 832,\n    \"renewals_count\": 4046,\n    \"not_for_loan_status\": 6682,\n    \"last_seen_date\": \"1999-12-08T04:50:34.922Z\",\n    \"uri\": \"string\",\n    \"timestamp\": \"1987-10-04T07:48:49.045Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a253a8a0-411e-4897-b2f2-e6ec41cf6abf",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e45987dc-0c3a-421f-9691-00c39ebdbe69",
+          "name": "Get item",
+          "request": {
+            "name": "Get item",
+            "description": {},
+            "url": {
+              "path": [
+                "items",
+                ":item_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "item_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7a779802-2238-4ddb-b717-8b3f23d37519",
+              "name": "An item",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"biblio_id\": 2379,\n  \"item_id\": 7556,\n  \"external_id\": \"string\",\n  \"callnumber\": \"string\",\n  \"home_library_id\": \"string\",\n  \"holding_library_id\": \"string\",\n  \"item_type_id\": \"string\",\n  \"collection_code\": \"string\",\n  \"location\": \"string\",\n  \"permanent_location\": \"string\",\n  \"copy_number\": \"string\",\n  \"inventory_number\": \"string\",\n  \"acquisition_date\": \"2018-09-27\",\n  \"replacement_price\": 1890.531594287337,\n  \"purchase_price\": 1216.5401365775542,\n  \"public_notes\": \"string\",\n  \"internal_notes\": \"string\",\n  \"checkouts_count\": 9412,\n  \"holds_count\": 958,\n  \"renewals_count\": 8520,\n  \"not_for_loan_status\": 7142,\n  \"last_seen_date\": \"1970-11-04T00:47:44.574Z\",\n  \"uri\": \"string\",\n  \"timestamp\": \"2003-05-12T20:25:15.373Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb55c455-99bb-4cff-b143-799c13ab1d7d",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97b90c96-cef0-4988-84b9-ba20a36944ae",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "item_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://librarycatalogue.taylors.edu.my/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "16d9e7d9-b1f5-4b52-803e-9df4ad57073a",
+    "name": "Taylor's Library Koha REST checkouts items API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1. This document was converted to OpenAPI 3.0 from the live, publicly retrievable Swagger 2.0 definition at https://librarycatalogue.taylors.edu.my/api/v1/. Only resources whose object schemas were confirmed present in the live definition (patron, checkout, hold, item, library, item_type) are described here. Collection and resource endpoints require authentication (HTTP 401 is returned to anonymous clients); the specification document itself is public.\n\nContact Support:\n Name: Taylor's University Library",
+      "type": "text/plain"
+    }
+  }
+}

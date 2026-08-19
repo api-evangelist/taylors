@@ -1,0 +1,360 @@
+{
+  "item": [
+    {
+      "id": "d75e1c72-4509-4e19-8ca7-03c1606eeb49",
+      "name": "holds",
+      "description": {
+        "content": "Holds (reservations)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d88ac860-84c8-4214-a2fc-40378a3a70a5",
+          "name": "List holds",
+          "request": {
+            "name": "List holds",
+            "description": {},
+            "url": {
+              "path": [
+                "holds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21eb9629-820f-43c4-ba6b-bbde81b8ed33",
+              "name": "A list of holds",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "holds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"hold_id\": 9451,\n    \"patron_id\": 5370,\n    \"biblio_id\": 1729,\n    \"item_id\": 8834,\n    \"item_type_id\": \"string\",\n    \"pickup_library_id\": \"string\",\n    \"hold_date\": \"2002-02-01\",\n    \"expiration_date\": \"1955-05-30\",\n    \"cancellation_date\": \"1978-03-30\",\n    \"cancellation_reason\": \"string\",\n    \"waiting_date\": \"1968-08-04\",\n    \"priority\": 6397,\n    \"status\": \"string\",\n    \"item_level\": true,\n    \"suspended\": false,\n    \"suspended_until\": \"1956-03-31T17:14:15.204Z\",\n    \"non_priority\": true,\n    \"lowest_priority\": false,\n    \"notes\": \"string\",\n    \"timestamp\": \"2016-02-19T21:59:06.733Z\"\n  },\n  {\n    \"hold_id\": 8877,\n    \"patron_id\": 6591,\n    \"biblio_id\": 8050,\n    \"item_id\": 6282,\n    \"item_type_id\": \"string\",\n    \"pickup_library_id\": \"string\",\n    \"hold_date\": \"1988-07-13\",\n    \"expiration_date\": \"1956-11-10\",\n    \"cancellation_date\": \"2002-05-10\",\n    \"cancellation_reason\": \"string\",\n    \"waiting_date\": \"1958-08-07\",\n    \"priority\": 5842,\n    \"status\": \"string\",\n    \"item_level\": false,\n    \"suspended\": true,\n    \"suspended_until\": \"2000-04-01T05:28:43.443Z\",\n    \"non_priority\": false,\n    \"lowest_priority\": true,\n    \"notes\": \"string\",\n    \"timestamp\": \"1995-05-03T01:35:46.380Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16ab5569-0cca-412e-8c04-a44c3fb4a3d9",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "holds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d07d148-bc30-46b3-83ba-c94defbef07b",
+          "name": "Get hold",
+          "request": {
+            "name": "Get hold",
+            "description": {},
+            "url": {
+              "path": [
+                "holds",
+                ":hold_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "hold_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d1619595-2c14-4463-8a11-e49981fc02d4",
+              "name": "A hold",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "holds",
+                    ":hold_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "hold_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hold_id\": 3283,\n  \"patron_id\": 797,\n  \"biblio_id\": 7731,\n  \"item_id\": 444,\n  \"item_type_id\": \"string\",\n  \"pickup_library_id\": \"string\",\n  \"hold_date\": \"2019-07-13\",\n  \"expiration_date\": \"1993-01-21\",\n  \"cancellation_date\": \"1975-10-23\",\n  \"cancellation_reason\": \"string\",\n  \"waiting_date\": \"1948-07-08\",\n  \"priority\": 3762,\n  \"status\": \"string\",\n  \"item_level\": false,\n  \"suspended\": true,\n  \"suspended_until\": \"1998-01-19T20:51:24.061Z\",\n  \"non_priority\": true,\n  \"lowest_priority\": true,\n  \"notes\": \"string\",\n  \"timestamp\": \"1970-07-19T17:42:55.300Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "220c4db5-1272-41db-9b58-59dce3c74191",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "holds",
+                    ":hold_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "hold_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc468bd5-57d8-4c11-a02e-49851a912d58",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "holds",
+                    ":hold_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "hold_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://librarycatalogue.taylors.edu.my/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e9959060-e577-4d7d-b761-3e20a6cf33bf",
+    "name": "Taylor's Library Koha REST checkouts holds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1. This document was converted to OpenAPI 3.0 from the live, publicly retrievable Swagger 2.0 definition at https://librarycatalogue.taylors.edu.my/api/v1/. Only resources whose object schemas were confirmed present in the live definition (patron, checkout, hold, item, library, item_type) are described here. Collection and resource endpoints require authentication (HTTP 401 is returned to anonymous clients); the specification document itself is public.\n\nContact Support:\n Name: Taylor's University Library",
+      "type": "text/plain"
+    }
+  }
+}

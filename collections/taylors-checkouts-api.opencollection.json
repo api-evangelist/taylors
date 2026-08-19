@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Taylor's Library Koha REST checkouts API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "checkouts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List checkouts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://librarycatalogue.taylors.edu.my/api/v1/checkouts"
+          },
+          "docs": "List checkouts"
+        },
+        {
+          "info": {
+            "name": "Get checkout",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://librarycatalogue.taylors.edu.my/api/v1/checkouts/:checkout_id",
+            "params": [
+              {
+                "name": "checkout_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get checkout"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

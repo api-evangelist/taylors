@@ -1,0 +1,163 @@
+{
+  "item": [
+    {
+      "id": "040871ee-4cad-455f-9983-6fcd96f90bb1",
+      "name": "item_types",
+      "description": {
+        "content": "Item types",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2247eb87-aa6b-4706-bbe6-bf96417ae3f5",
+          "name": "List item types",
+          "request": {
+            "name": "List item types",
+            "description": {},
+            "url": {
+              "path": [
+                "item_types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aed53853-a845-428c-ab23-bae08fe5b16d",
+              "name": "A list of item types",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "item_types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"item_type_id\": \"str\",\n    \"description\": \"string\",\n    \"parent_type\": \"string\",\n    \"rentalcharge\": 6074.14984616123,\n    \"daily_rental_charge\": 4255.369465484778,\n    \"hourly_rental_charge\": 2029.6870682168687,\n    \"default_replacement_cost\": 6367.026085666989,\n    \"process_fee\": 8949.232341830375,\n    \"not_for_loan_status\": true,\n    \"hide_in_opac\": false,\n    \"bookable\": true,\n    \"image_url\": \"string\",\n    \"summary\": \"string\"\n  },\n  {\n    \"item_type_id\": \"string\",\n    \"description\": \"string\",\n    \"parent_type\": \"string\",\n    \"rentalcharge\": 6931.211080021779,\n    \"daily_rental_charge\": 6904.643522760674,\n    \"hourly_rental_charge\": 5411.96013400258,\n    \"default_replacement_cost\": 2530.0912708605338,\n    \"process_fee\": 6089.481058373473,\n    \"not_for_loan_status\": false,\n    \"hide_in_opac\": false,\n    \"bookable\": false,\n    \"image_url\": \"string\",\n    \"summary\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "182b83b5-5647-4a4b-b14d-7f09be619653",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "item_types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://librarycatalogue.taylors.edu.my/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3ec51e4a-da34-43e4-933f-f88d478acacb",
+    "name": "Taylor's Library Koha REST checkouts item_types API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1. This document was converted to OpenAPI 3.0 from the live, publicly retrievable Swagger 2.0 definition at https://librarycatalogue.taylors.edu.my/api/v1/. Only resources whose object schemas were confirmed present in the live definition (patron, checkout, hold, item, library, item_type) are described here. Collection and resource endpoints require authentication (HTTP 401 is returned to anonymous clients); the specification document itself is public.\n\nContact Support:\n Name: Taylor's University Library",
+      "type": "text/plain"
+    }
+  }
+}
