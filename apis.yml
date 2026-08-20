@@ -98,6 +98,8 @@ apis:
   humanURL: https://librarycatalogue.taylors.edu.my/
   baseURL: https://librarycatalogue.taylors.edu.my/api/v1
   tags:
+  - Checkouts
+  tags_raw:
   - checkouts
   properties:
   - type: OpenAPI
@@ -130,6 +132,8 @@ apis:
   humanURL: https://librarycatalogue.taylors.edu.my/
   baseURL: https://librarycatalogue.taylors.edu.my/api/v1
   tags:
+  - Holds
+  tags_raw:
   - holds
   properties:
   - type: OpenAPI
@@ -162,6 +166,8 @@ apis:
   humanURL: https://librarycatalogue.taylors.edu.my/
   baseURL: https://librarycatalogue.taylors.edu.my/api/v1
   tags:
+  - Item Types
+  tags_raw:
   - item_types
   properties:
   - type: OpenAPI
@@ -194,6 +200,8 @@ apis:
   humanURL: https://librarycatalogue.taylors.edu.my/
   baseURL: https://librarycatalogue.taylors.edu.my/api/v1
   tags:
+  - Item
+  tags_raw:
   - items
   properties:
   - type: OpenAPI
@@ -226,6 +234,8 @@ apis:
   humanURL: https://librarycatalogue.taylors.edu.my/
   baseURL: https://librarycatalogue.taylors.edu.my/api/v1
   tags:
+  - Libraries
+  tags_raw:
   - libraries
   properties:
   - type: OpenAPI
