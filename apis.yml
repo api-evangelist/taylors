@@ -307,6 +307,9 @@ apis:
   - type: JSONLD
     url: json-ld/taylors-context.jsonld
 common:
+  - type: CapabilityMap
+    url: capabilities/taylors-capability-edges.yml
+    name: Taylor's University Business Capability Map
   - type: AgenticAccess
     url: agentic-access/taylors-agentic-access.yml
   - type: DomainSecurity

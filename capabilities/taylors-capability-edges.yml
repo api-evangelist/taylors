@@ -1,0 +1,43 @@
+slug: taylors
+provider: Taylor's University
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Education
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: checkouts
+  spec_file: taylors-checkouts-api-openapi.yml
+  capability_id: BC-4790.40
+  capability_id_l1: BC-4790
+  capability_name: Library & Information Resource Operations
+  confidence: 0.85
+  evidence: served by the open-source Koha integrated library system; GET /checkouts — List checkouts
+  reason: Circulation checkouts in an integrated library system are core library collection/circulation
+    operations, i.e. Library & Information Resource Operations.
+- tag: items
+  spec_file: taylors-items-api-openapi.yml
+  capability_id: BC-4790.40
+  capability_id_l1: BC-4790
+  capability_name: Library & Information Resource Operations
+  confidence: 0.85
+  evidence: GET /items — List items; Taylor's University Library catalog REST API, served by the open-source
+    Koha integrated library system
+  reason: Library catalogue item records in an ILS represent collection management and information resource
+    operations.
+- tag: holds
+  spec_file: taylors-holds-api-openapi.yml
+  capability_id: BC-4790.40
+  capability_id_l1: BC-4790
+  capability_name: Library & Information Resource Operations
+  confidence: 0.8
+  evidence: GET /holds — List holds; served by the open-source Koha integrated library system
+  reason: Holds/reservations on library items are part of library circulation operations supporting teaching
+    and research.
