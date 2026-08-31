@@ -110,7 +110,7 @@ apis:
   humanURL: https://librarycatalogue.taylors.edu.my/
   baseURL: https://librarycatalogue.taylors.edu.my/api/v1
   tags:
-  - Checkouts
+  - checkouts
   tags_raw:
   - checkouts
   properties:
@@ -144,7 +144,7 @@ apis:
   humanURL: https://librarycatalogue.taylors.edu.my/
   baseURL: https://librarycatalogue.taylors.edu.my/api/v1
   tags:
-  - Holds
+  - holds
   tags_raw:
   - holds
   properties:
@@ -177,8 +177,7 @@ apis:
   description: Item types
   humanURL: https://librarycatalogue.taylors.edu.my/
   baseURL: https://librarycatalogue.taylors.edu.my/api/v1
-  tags:
-  - Item Types
+  tags: []
   tags_raw:
   - item_types
   properties:
@@ -246,7 +245,7 @@ apis:
   humanURL: https://librarycatalogue.taylors.edu.my/
   baseURL: https://librarycatalogue.taylors.edu.my/api/v1
   tags:
-  - Libraries
+  - libraries
   tags_raw:
   - libraries
   properties:
