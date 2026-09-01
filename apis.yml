@@ -1,16 +1,22 @@
 ---
 aid: taylors
 name: Taylor's University
+x-type: university
+x-category: Private Research University
 description: >-
-  Taylor's University is a private research university based in Subang Jaya,
-  Selangor, Malaysia, and ranked #251 in the QS World University Rankings 2025.
-  It does not operate a formal, branded developer portal, but several real,
-  publicly reachable machine interfaces exist across its library and research
-  infrastructure. The Taylor's Library catalog runs on Koha (exposing a Koha
-  REST API and an OAI-PMH data provider), and the Taylor's e-Repository runs on
-  DSpace CRIS (exposing a HAL+JSON REST API and an OAI-PMH endpoint). Identity
-  is federated through Microsoft Entra ID. The institution's GitHub organization
-  exists but currently has no public repositories.
+  Taylor's University is a private research university in Subang Jaya, Selangor, Malaysia, ranked #251
+  in the QS World University Rankings 2025. It operates no developer portal, no public API programme
+  and no public code: the Taylors-University GitHub organisation has existed since 2020 and still holds
+  zero public repositories. What it does operate, on its own infrastructure under taylors.edu.my, are
+  four live machine-readable surfaces — a self-hosted Koha library system exposing a REST API at
+  /api/v1 and an OAI-PMH 2.0 data provider, and a self-hosted DSpace CRIS e-Repository exposing a
+  HAL+JSON REST API at /server/api and a second OAI-PMH 2.0 provider. Both REST contracts are the
+  upstream products' own documents (Koha Development Team; DSpace CRIS 2022.01.01) running on Taylor's
+  servers: the deployment, the data and the DOIs are the institution's, the contract is not. Identity
+  runs through a Microsoft Entra ID tenant whose SAML 2.0 and OpenID Connect metadata are publicly
+  retrievable, and the institution is registered with ROR and holds a Crossref membership through
+  Taylor's University Press. No open data portal, no course-catalog or timetable API, and no
+  institution-operated developer documentation were found.
 type: Index
 deliveryModel:
   model: saas
@@ -45,21 +51,141 @@ tags:
   - Education
   - Higher Education
   - University
-  - Library
-  - Institutional Repository
-  - Open Data
+  - Private University
   - Malaysia
   - Asia
+  - Library
+  - Library Catalog
+  - Institutional Repository
+  - Research Data
+  - OAI-PMH
+  - Identity Federation
+  - Koha
+  - DSpace
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-09-01'
 specificationVersion: '0.23'
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    Every surface in this profile was probed live on 2026-09-01 and returned a real payload, not a
+    link. Four institution-hosted machine interfaces are reachable (Koha REST, Koha OAI-PMH, DSpace
+    CRIS REST, DSpace OAI-PMH), plus an Entra ID identity-federation surface and two registry
+    memberships. The footprint is genuinely narrow and the profile says so: no developer portal, no
+    open data portal, no course-catalog or registrar API, no public GitHub repositories, no llms.txt
+    and no security.txt. Both self-hosted REST contracts are the upstream products' documents rather
+    than Taylor's engineering, which is recorded on each entry rather than hidden.
+  evidence:
+    - url: https://librarycatalogue.taylors.edu.my/api/v1/
+      status: 200
+    - url: https://librarycatalogue.taylors.edu.my/cgi-bin/koha/oai.pl?verb=Identify
+      status: 200
+    - url: https://irepo.taylors.edu.my/server/api
+      status: 200
+    - url: https://irepo.taylors.edu.my/server/oai/request?verb=Identify
+      status: 200
+    - url: https://login.microsoftonline.com/0a39ee13-5c27-420c-b0af-8e65c6929055/federationmetadata/2007-06/federationmetadata.xml
+      status: 200
+    - url: https://api.crossref.org/members/37785
+      status: 200
+    - url: https://api.ror.org/v2/organizations/0498pcx51
+      status: 200
+    - url: https://api.github.com/orgs/Taylors-University
+      status: 200
+    - url: https://university.taylors.edu.my/llms.txt
+      status: 404
+    - url: https://university.taylors.edu.my/.well-known/security.txt
+      status: 404
+    - url: https://api.taylors.edu.my/
+      status: 0
+    - url: https://data.taylors.edu.my/
+      status: 0
+    - url: https://developer.taylors.edu.my/
+      status: 0
+    - url: https://courses.taylors.edu.my/
+      status: 0
 apis:
+- aid: taylors:library-rest
+  name: Taylor's Library Koha REST API
+  x-operator: institution
+  x-contract-author: Koha Development Team (https://koha-community.org/)
+  description: >-
+    REST API of the Taylor's University Library catalog, served under /api/v1 by a Koha integrated
+    library system that Taylor's self-hosts (librarycatalogue.taylors.edu.my resolves through
+    librarycatalogue.wip.taylors.edu.my to 103.145.154.51, Taylor's own infrastructure — no vendor
+    CNAME). The live Swagger 2.0 definition is publicly retrievable and describes 213 paths across 76
+    tags with 113 definitions; its info.contact is the Koha Development Team, so the DEPLOYMENT is
+    Taylor's and the CONTRACT is the Koha community's. The OpenAPI documents registered here are a
+    verified subset covering only the six resources whose object schemas were confirmed present in the
+    live definition (patron, checkout, hold, item, library, item_type); they are refine-split per tag
+    and are recorded as one surface, not six, because they describe one deployment. Collection and
+    resource endpoints require authentication (HTTP 401 to anonymous clients); the specification
+    document itself is public.
+  humanURL: https://librarycatalogue.taylors.edu.my/
+  baseURL: https://librarycatalogue.taylors.edu.my/api/v1
+  tags:
+  - Library
+  - Library Catalog
+  - Koha
+  - REST
+  tags_raw:
+  - patrons
+  - checkouts
+  - holds
+  - items
+  - libraries
+  - item_types
+  properties:
+  - type: APIReference
+    url: https://librarycatalogue.taylors.edu.my/api/v1/
+  - type: Documentation
+    url: https://librarycatalogue.taylors.edu.my/api/v1/
+  - type: OpenAPI
+    url: openapi/taylors-patrons-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/taylors-checkouts-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/taylors-holds-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/taylors-items-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/taylors-item-types-api-openapi.yml
+  - type: OpenAPI
+    url: openapi/taylors-libraries-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/taylors-patron-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-checkout-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-hold-schema.json
+  - type: JSONSchema
+    url: json-schema/taylors-item-schema.json
+  - type: JSONStructure
+    url: json-structure/taylors-patron-structure.json
+  - type: JSONStructure
+    url: json-structure/taylors-item-structure.json
+  - type: Examples
+    url: examples/taylors-getPatron-example.json
+  - type: Examples
+    url: examples/taylors-getCheckout-example.json
+  - type: Examples
+    url: examples/taylors-getItem-example.json
+  - type: Rules
+    url: rules/taylors-rules.yml
+  - type: Vocabulary
+    url: vocabulary/taylors-vocabulary.yml
+  - type: JSONLD
+    url: json-ld/taylors-context.jsonld
 - aid: taylors:library-oai
   name: Taylor's Library OAI-PMH
+  x-operator: institution
   description: >-
-    OAI-PMH 2.0 data provider exposed by the Koha-powered Taylor's Library catalog for harvesting bibliographic
-    metadata. The Identify response returns repository name "Taylor's Library" with earliest records dating
-    to December 2019.
+    OAI-PMH 2.0 data provider exposed by the Koha-powered Taylor's Library catalog for harvesting
+    bibliographic metadata. The Identify response returns repositoryName "Taylor's Library",
+    protocolVersion 2.0, adminEmail library.general@taylors.edu.my, earliestDatestamp 2019-12-05 and
+    gzip compression support; ListMetadataFormats returns oai_dc, marc21 and marcxml. Anonymous,
+    unauthenticated and institution-hosted — the strongest genuinely open surface Taylor's runs.
   humanURL: https://librarycatalogue.taylors.edu.my/
   baseURL: https://librarycatalogue.taylors.edu.my/cgi-bin/koha/oai.pl
   tags:
@@ -70,243 +196,143 @@ apis:
   properties:
   - type: Documentation
     url: https://librarycatalogue.taylors.edu.my/cgi-bin/koha/oai.pl?verb=Identify
+  - type: Conformance
+    url: conformance/taylors-conformance.yml
 - aid: taylors:irepo-rest
-  name: Taylor's e-Repository DSpace REST API
+  name: Taylor's e-Repository DSpace CRIS REST API
+  x-operator: institution
+  x-contract-author: DSpace CRIS (cris-2022.01.01)
   description: >-
-    The Taylor's e-Repository runs on DSpace CRIS (cris-2022.01.01) and exposes a HATEOAS HAL+JSON REST
-    API at /server/api covering communities, collections, items, bundles, discovery, statistics, ORCID
-    and external sources. It collects research abstracts, theses, dissertations, academic profiles, articles
-    and creative works from Taylor's faculty, staff and students.
+    The Taylor's e-Repository runs DSpace CRIS 2022.01.01 self-hosted at irepo.taylors.edu.my
+    (resolving through irepo.wip.taylors.edu.my to 103.145.155.17 — again Taylor's own infrastructure,
+    no vendor CNAME) and exposes a HATEOAS HAL+JSON REST API at /server/api covering communities,
+    collections, items, bundles, discovery, statistics and 21 external-source integrations. It holds
+    research abstracts, theses, dissertations, academic profiles, articles and creative works from
+    Taylor's faculty, staff and students. The API root and /discover/search/objects answer anonymously;
+    /core/items returns 401. The contract is the DSpace CRIS product's, the deployment and its content
+    are Taylor's. Note that the OpenAIRE CERIF service description advertised on the OAI endpoint is
+    still DSpace default boilerplate (unresolved ${dspace.url} placeholders and the stock "An example
+    CRIS…" text), so OpenAIRE CERIF compliance is advertised but not configured.
   humanURL: https://irepo.taylors.edu.my/
   baseURL: https://irepo.taylors.edu.my/server/api
   tags:
-  - Repository
+  - Institutional Repository
   - DSpace
   - REST
-  - Research
+  - Research Data
   - CRIS
   properties:
   - type: Documentation
     url: https://irepo.taylors.edu.my/server/api
+  - type: Conformance
+    url: conformance/taylors-conformance.yml
 - aid: taylors:irepo-oai
   name: Taylor's e-Repository OAI-PMH
+  x-operator: institution
   description: >-
-    OAI-PMH 2.0 data provider for the DSpace CRIS e-Repository, advertising repository name "Taylor's
-    University Library" and OpenAIRE CERIF profile compliance for research-output discovery and aggregation.
+    OAI-PMH 2.0 data provider for the DSpace CRIS e-Repository, Identifying as repositoryName
+    "Taylor's University Library", repositoryIdentifier irepo.taylors.edu.my, protocolVersion 2.0,
+    earliestDatestamp 2022-11-28, adminEmail ChangNguan.Ting@taylors.edu.my. ListMetadataFormats
+    returns eleven prefixes — oai_dc, qdc, mods, mets, ore, rdf, marc, dim, didl, etdms and uketd_dc —
+    making this the richest harvesting surface the institution operates.
   humanURL: https://irepo.taylors.edu.my/
   baseURL: https://irepo.taylors.edu.my/server/oai/request
   tags:
-  - Repository
+  - Institutional Repository
   - OAI-PMH
   - Metadata
-  - OpenAIRE
   - Harvesting
   properties:
   - type: Documentation
     url: https://irepo.taylors.edu.my/server/oai/request?verb=Identify
-- aid: taylors:taylors-checkouts-api
-  name: Taylor's University checkouts API
-  description: Item checkouts (issues)
-  humanURL: https://librarycatalogue.taylors.edu.my/
-  baseURL: https://librarycatalogue.taylors.edu.my/api/v1
+  - type: Conformance
+    url: conformance/taylors-conformance.yml
+- aid: taylors:entra-identity-federation
+  name: Taylor's University Identity Federation (Microsoft Entra ID)
+  x-operator: federation
+  description: >-
+    Taylor's operates a Microsoft Entra ID tenant, 0a39ee13-5c27-420c-b0af-8e65c6929055, branded
+    "Taylor's Education Group", as the identity provider behind taylors.edu.my. The realm is
+    NameSpaceType "Managed" — cloud-native, not federated to an on-premises AD FS — and both its SAML
+    2.0 federation metadata (entityID https://sts.windows.net/0a39ee13-5c27-420c-b0af-8e65c6929055/,
+    signed, 28KB) and its OpenID Connect discovery document are publicly retrievable. This is the
+    institution's own identity surface: a federation is shared by definition and the IdP behind it is
+    theirs. Taylor's does NOT appear in eduGAIN, and Malaysia's national federation SIFULAN carries no
+    Taylor's entity, so Entra ID is the whole of the federation story here. The Koha catalog integrates
+    this tenant for OPAC sign-in.
+  humanURL: https://university.taylors.edu.my/en.html
+  baseURL: https://login.microsoftonline.com/0a39ee13-5c27-420c-b0af-8e65c6929055/v2.0
   tags:
-  - Checkouts
-  tags_raw:
-  - checkouts
+  - Identity Federation
+  - SAML
+  - OpenID Connect
+  - Entra ID
+  - Single Sign-On
   properties:
-  - type: OpenAPI
-    url: openapi/taylors-checkouts-api-openapi.yml
-  - type: Documentation
-    url: https://librarycatalogue.taylors.edu.my/api/v1/
-  - type: JSONSchema
-    url: json-schema/taylors-patron-schema.json
-  - type: JSONSchema
-    url: json-schema/taylors-checkout-schema.json
-  - type: JSONSchema
-    url: json-schema/taylors-hold-schema.json
-  - type: JSONSchema
-    url: json-schema/taylors-item-schema.json
-  - type: JSONStructure
-    url: json-structure/taylors-patron-structure.json
-  - type: JSONStructure
-    url: json-structure/taylors-item-structure.json
-  - type: Examples
-    url: examples/taylors-getPatron-example.json
-  - type: Rules
-    url: rules/taylors-rules.yml
-  - type: Vocabulary
-    url: vocabulary/taylors-vocabulary.yml
-  - type: JSONLD
-    url: json-ld/taylors-context.jsonld
-- aid: taylors:taylors-holds-api
-  name: Taylor's University holds API
-  description: Holds (reservations)
-  humanURL: https://librarycatalogue.taylors.edu.my/
-  baseURL: https://librarycatalogue.taylors.edu.my/api/v1
+  - type: IdentityFederation
+    url: https://login.microsoftonline.com/0a39ee13-5c27-420c-b0af-8e65c6929055/federationmetadata/2007-06/federationmetadata.xml
+  - type: OpenIDConnectDiscovery
+    url: https://login.microsoftonline.com/taylors.edu.my/v2.0/.well-known/openid-configuration
+  - type: Conformance
+    url: conformance/taylors-conformance.yml
+- aid: taylors:crossref-membership
+  name: Taylor's University Crossref Membership
+  x-operator: registry
+  description: >-
+    Taylor's University Press is Crossref member 37785, registered at Subang Jaya, Selangor, Malaysia,
+    holding DOI prefix 10.58946 with 70 deposited DOIs. This is a membership fact about the institution
+    — it registers DOIs, which is a fact about them, not a misattribution — recorded here as a
+    relationship. Crossref's own API contract is deliberately NOT saved under this institution.
+  humanURL: https://university.taylors.edu.my/en/research-and-enterprise/about-us/taylors-press.html
+  baseURL: https://api.crossref.org/members/37785
   tags:
-  - Holds
-  tags_raw:
-  - holds
+  - Registry
+  - DOI
+  - Crossref
+  - Scholarly Publishing
   properties:
-  - type: OpenAPI
-    url: openapi/taylors-holds-api-openapi.yml
-  - type: Documentation
-    url: https://librarycatalogue.taylors.edu.my/api/v1/
-  - type: JSONSchema
-    url: json-schema/taylors-patron-schema.json
-  - type: JSONSchema
-    url: json-schema/taylors-checkout-schema.json
-  - type: JSONSchema
-    url: json-schema/taylors-hold-schema.json
-  - type: JSONSchema
-    url: json-schema/taylors-item-schema.json
-  - type: JSONStructure
-    url: json-structure/taylors-patron-structure.json
-  - type: JSONStructure
-    url: json-structure/taylors-item-structure.json
-  - type: Examples
-    url: examples/taylors-getPatron-example.json
-  - type: Rules
-    url: rules/taylors-rules.yml
-  - type: Vocabulary
-    url: vocabulary/taylors-vocabulary.yml
-  - type: JSONLD
-    url: json-ld/taylors-context.jsonld
-- aid: taylors:taylors-item-types-api
-  name: Taylor's University item_types API
-  description: Item types
-  humanURL: https://librarycatalogue.taylors.edu.my/
-  baseURL: https://librarycatalogue.taylors.edu.my/api/v1
+  - type: Registration
+    url: https://api.crossref.org/members/37785
+  - type: Conformance
+    url: conformance/taylors-conformance.yml
+- aid: taylors:ror-registration
+  name: Taylor's University ROR Registration
+  x-operator: registry
+  description: >-
+    Taylor's University is registered in the Research Organization Registry as ror.org/0498pcx51,
+    located Subang Jaya, Malaysia, cross-walked to Crossref Funder ID 501100011915, GRID
+    grid.452879.5, ISNI 0000 0004 0647 0003 and Wikidata Q841775. A registration the institution holds,
+    not a contract it operates; the ROR API is never saved as theirs.
+  humanURL: https://ror.org/0498pcx51
+  baseURL: https://api.ror.org/v2/organizations/0498pcx51
   tags:
-  - Item Types
-  tags_raw:
-  - item_types
+  - Registry
+  - Organization Identifier
+  - ROR
   properties:
-  - type: OpenAPI
-    url: openapi/taylors-item-types-api-openapi.yml
-  - type: Documentation
-    url: https://librarycatalogue.taylors.edu.my/api/v1/
-  - type: JSONSchema
-    url: json-schema/taylors-patron-schema.json
-  - type: JSONSchema
-    url: json-schema/taylors-checkout-schema.json
-  - type: JSONSchema
-    url: json-schema/taylors-hold-schema.json
-  - type: JSONSchema
-    url: json-schema/taylors-item-schema.json
-  - type: JSONStructure
-    url: json-structure/taylors-patron-structure.json
-  - type: JSONStructure
-    url: json-structure/taylors-item-structure.json
-  - type: Examples
-    url: examples/taylors-getPatron-example.json
-  - type: Rules
-    url: rules/taylors-rules.yml
-  - type: Vocabulary
-    url: vocabulary/taylors-vocabulary.yml
-  - type: JSONLD
-    url: json-ld/taylors-context.jsonld
-- aid: taylors:taylors-items-api
-  name: Taylor's University items API
-  description: Catalog items
-  humanURL: https://librarycatalogue.taylors.edu.my/
-  baseURL: https://librarycatalogue.taylors.edu.my/api/v1
-  tags:
-  - Item
-  tags_raw:
-  - items
-  properties:
-  - type: OpenAPI
-    url: openapi/taylors-items-api-openapi.yml
-  - type: Documentation
-    url: https://librarycatalogue.taylors.edu.my/api/v1/
-  - type: JSONSchema
-    url: json-schema/taylors-patron-schema.json
-  - type: JSONSchema
-    url: json-schema/taylors-checkout-schema.json
-  - type: JSONSchema
-    url: json-schema/taylors-hold-schema.json
-  - type: JSONSchema
-    url: json-schema/taylors-item-schema.json
-  - type: JSONStructure
-    url: json-structure/taylors-patron-structure.json
-  - type: JSONStructure
-    url: json-structure/taylors-item-structure.json
-  - type: Examples
-    url: examples/taylors-getPatron-example.json
-  - type: Rules
-    url: rules/taylors-rules.yml
-  - type: Vocabulary
-    url: vocabulary/taylors-vocabulary.yml
-  - type: JSONLD
-    url: json-ld/taylors-context.jsonld
-- aid: taylors:taylors-libraries-api
-  name: Taylor's University libraries API
-  description: Libraries (branches)
-  humanURL: https://librarycatalogue.taylors.edu.my/
-  baseURL: https://librarycatalogue.taylors.edu.my/api/v1
-  tags:
-  - Libraries
-  tags_raw:
-  - libraries
-  properties:
-  - type: OpenAPI
-    url: openapi/taylors-libraries-api-openapi.yml
-  - type: Documentation
-    url: https://librarycatalogue.taylors.edu.my/api/v1/
-  - type: JSONSchema
-    url: json-schema/taylors-patron-schema.json
-  - type: JSONSchema
-    url: json-schema/taylors-checkout-schema.json
-  - type: JSONSchema
-    url: json-schema/taylors-hold-schema.json
-  - type: JSONSchema
-    url: json-schema/taylors-item-schema.json
-  - type: JSONStructure
-    url: json-structure/taylors-patron-structure.json
-  - type: JSONStructure
-    url: json-structure/taylors-item-structure.json
-  - type: Examples
-    url: examples/taylors-getPatron-example.json
-  - type: Rules
-    url: rules/taylors-rules.yml
-  - type: Vocabulary
-    url: vocabulary/taylors-vocabulary.yml
-  - type: JSONLD
-    url: json-ld/taylors-context.jsonld
-- aid: taylors:taylors-patrons-api
-  name: Taylor's University patrons API
-  description: Patron (borrower) records
-  humanURL: https://librarycatalogue.taylors.edu.my/
-  baseURL: https://librarycatalogue.taylors.edu.my/api/v1
-  tags:
-  - patrons
-  properties:
-  - type: OpenAPI
-    url: openapi/taylors-patrons-api-openapi.yml
-  - type: Documentation
-    url: https://librarycatalogue.taylors.edu.my/api/v1/
-  - type: JSONSchema
-    url: json-schema/taylors-patron-schema.json
-  - type: JSONSchema
-    url: json-schema/taylors-checkout-schema.json
-  - type: JSONSchema
-    url: json-schema/taylors-hold-schema.json
-  - type: JSONSchema
-    url: json-schema/taylors-item-schema.json
-  - type: JSONStructure
-    url: json-structure/taylors-patron-structure.json
-  - type: JSONStructure
-    url: json-structure/taylors-item-structure.json
-  - type: Examples
-    url: examples/taylors-getPatron-example.json
-  - type: Rules
-    url: rules/taylors-rules.yml
-  - type: Vocabulary
-    url: vocabulary/taylors-vocabulary.yml
-  - type: JSONLD
-    url: json-ld/taylors-context.jsonld
+  - type: Registration
+    url: https://api.ror.org/v2/organizations/0498pcx51
 common:
+  - type: Website
+    url: https://university.taylors.edu.my/en.html
+  - type: APIReference
+    url: https://librarycatalogue.taylors.edu.my/api/v1/
+  - type: LibraryCatalog
+    url: https://librarycatalogue.taylors.edu.my/
+  - type: ResearchRepository
+    url: https://irepo.taylors.edu.my/
+  - type: IdentityFederation
+    url: https://login.microsoftonline.com/taylors.edu.my/v2.0/.well-known/openid-configuration
+  - type: PrivacyPolicy
+    url: https://university.taylors.edu.my/en/privacy-policy.html
+  - type: Support
+    url: https://university.taylors.edu.my/en/get-in-touch/contact-information.html
+  - type: GitHub
+    url: https://github.com/Taylors-University
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/taylor's-university/
+  - type: Conformance
+    url: conformance/taylors-conformance.yml
   - type: CapabilityMap
     url: capabilities/taylors-capability-edges.yml
     name: Taylor's University Business Capability Map
@@ -318,14 +344,6 @@ common:
     url: authentication/taylors-authentication.yml
   - type: OAuthScopes
     url: scopes/taylors-scopes.yml
-  - type: Website
-    url: https://university.taylors.edu.my/en.html
-  - type: GitHub
-    url: https://github.com/Taylors-University
-  - type: LinkedIn
-    url: https://www.linkedin.com/school/taylor's-university/
-  - type: Authentication
-    url: https://librarycatalogue.taylors.edu.my/
   - type: Plans
     url: plans/taylors-plans-pricing.yml
   - type: RateLimits
