@@ -125,10 +125,12 @@ apis:
   humanURL: https://librarycatalogue.taylors.edu.my/
   baseURL: https://librarycatalogue.taylors.edu.my/api/v1
   tags:
-  - Library
-  - Library Catalog
-  - Koha
-  - REST
+  - patrons
+  - Checkouts
+  - Holds
+  - Item
+  - Libraries
+  - Item Types
   tags_raw:
   - patrons
   - checkouts
