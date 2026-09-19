@@ -126,7 +126,7 @@ apis:
   baseURL: https://librarycatalogue.taylors.edu.my/api/v1
   tags:
   - patrons
-  - Checkouts
+  - Checkout
   - Holds
   - Item
   - Libraries
@@ -222,6 +222,12 @@ apis:
   - DSpace
   - REST
   - Research Data
+  - CRI
+  tags_raw:
+  - Institutional Repository
+  - DSpace
+  - REST
+  - Research Data
   - CRIS
   properties:
   - type: Documentation
@@ -265,6 +271,12 @@ apis:
   humanURL: https://university.taylors.edu.my/en.html
   baseURL: https://login.microsoftonline.com/0a39ee13-5c27-420c-b0af-8e65c6929055/v2.0
   tags:
+  - Identity Federation
+  - SAML
+  - OpenID Connect
+  - Entra ID
+  - SSO
+  tags_raw:
   - Identity Federation
   - SAML
   - OpenID Connect
