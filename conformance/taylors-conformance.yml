@@ -1,0 +1,116 @@
+---
+name: Taylor's University Domain Standard Conformance
+description: >-
+  Conformance of Taylor's University's institution-operated surfaces against the Kin Score `education`
+  regulatory regime standards[]. Every entry below was probed live on 2026-09-01 against the
+  institution's own hosts or against the registry that holds the record. Negative results are recorded
+  as explicitly as positive ones: an absent standard is a measurement, not a gap to be filled.
+regime: education
+generated: '2026-09-01'
+method: probed
+source: live probes of taylors.edu.my hosts, login.microsoftonline.com, api.crossref.org, api.datacite.org, api.ror.org
+conformant:
+  - standard: oai-pmh
+    status: conformant
+    operator: institution
+    detail: >-
+      Two independent OAI-PMH 2.0 data providers run on Taylor's own hosts. The Koha catalog provider
+      Identifies as repositoryName "Taylor's Library", protocolVersion 2.0, earliestDatestamp
+      2019-12-05, granularity YYYY-MM-DDThh:mm:ssZ, adminEmail library.general@taylors.edu.my, and
+      serves oai_dc, marc21 and marcxml. The DSpace CRIS provider Identifies as "Taylor's University
+      Library", protocolVersion 2.0, earliestDatestamp 2022-11-28, repositoryIdentifier
+      irepo.taylors.edu.my, and serves oai_dc, qdc, mods, mets, ore, rdf, marc, dim, didl, etdms and
+      uketd_dc.
+    evidence:
+      - url: https://librarycatalogue.taylors.edu.my/cgi-bin/koha/oai.pl?verb=Identify
+        status: 200
+        locator: OAI-PMH/Identify/protocolVersion = 2.0
+      - url: https://librarycatalogue.taylors.edu.my/cgi-bin/koha/oai.pl?verb=ListMetadataFormats
+        status: 200
+        locator: metadataPrefix oai_dc, marc21, marcxml
+      - url: https://irepo.taylors.edu.my/server/oai/request?verb=Identify
+        status: 200
+        locator: OAI-PMH/Identify/protocolVersion = 2.0
+      - url: https://irepo.taylors.edu.my/server/oai/request?verb=ListMetadataFormats
+        status: 200
+        locator: metadataPrefix oai_dc, qdc, mods, mets, ore, rdf, marc, dim, didl, etdms, uketd_dc
+  - standard: saml
+    status: conformant
+    operator: federation
+    detail: >-
+      Taylor's operates a Microsoft Entra ID tenant (0a39ee13-5c27-420c-b0af-8e65c6929055,
+      FederationBrandName "Taylor's Education Group") whose SAML 2.0 federation metadata is publicly
+      retrievable and signed. The realm is NameSpaceType "Managed" — cloud-native, not federated to an
+      on-premises AD FS — so the SAML IdP metadata describes Taylor's own identity provider.
+    evidence:
+      - url: https://login.microsoftonline.com/0a39ee13-5c27-420c-b0af-8e65c6929055/federationmetadata/2007-06/federationmetadata.xml
+        status: 200
+        locator: EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" entityID="https://sts.windows.net/0a39ee13-5c27-420c-b0af-8e65c6929055/"
+      - url: https://login.microsoftonline.com/taylors.edu.my/v2.0/.well-known/openid-configuration
+        status: 200
+        locator: issuer = https://login.microsoftonline.com/0a39ee13-5c27-420c-b0af-8e65c6929055/v2.0
+      - url: https://login.microsoftonline.com/getuserrealm.srf?login=user@taylors.edu.my&json=1
+        status: 200
+        locator: NameSpaceType = Managed, DomainName = taylors.edu.my
+  - standard: crossref
+    status: registered
+    operator: registry
+    detail: >-
+      Taylor's University Press is Crossref member 37785, located Subang Jaya, Selangor, Malaysia,
+      holding DOI prefix 10.58946 with 70 deposited DOIs as of the probe. This is a membership fact
+      about the institution, not a contract it operates; Crossref's own API is never saved here.
+    evidence:
+      - url: https://api.crossref.org/members/37785
+        status: 200
+        locator: message.primary-name = "Taylor's University Press", prefixes = ["10.58946"]
+      - url: https://api.crossref.org/prefixes/10.58946
+        status: 200
+        locator: message.member = https://id.crossref.org/member/37785
+partial:
+  - standard: orcid
+    status: declared_not_provisioned
+    operator: institution
+    detail: >-
+      The DSpace CRIS e-Repository exposes `orcid` and `orcidWorks` among its 21 external-source
+      integrations, but these are stock DSpace-CRIS product defaults, and the deployment's
+      orcid.application-client-id property returns an EMPTY values array — the ORCID integration is
+      present in the API surface and not provisioned. Recorded as partial deliberately: claiming ORCID
+      conformance from a product default that is switched off is exactly the artifact-presence-is-not-
+      provenance error this pipeline exists to prevent.
+    evidence:
+      - url: https://irepo.taylors.edu.my/server/api/integration/externalsources?size=50
+        status: 200
+        locator: _embedded.externalsources[].id includes "orcid", "orcidWorks"
+      - url: https://irepo.taylors.edu.my/server/api/config/properties/orcid.application-client-id
+        status: 200
+        locator: values = [] (empty)
+not_found:
+  - standard: datacite
+    detail: >-
+      No DataCite repository/client is registered under any name matching "taylor". The institution's
+      DOIs are minted through Crossref, not DataCite.
+    evidence:
+      - url: https://api.datacite.org/clients?query=taylor
+        status: 200
+        locator: meta.total = 0
+  - standard: shibboleth
+    detail: >-
+      No Shibboleth/SAML entity for Taylor's appears in the eduGAIN entity list, and Malaysia's
+      national federation SIFULAN (eduGAIN member since 2018-07-16) carries no Taylor's entity.
+      Identity federation runs through Entra ID instead — recorded under `saml` above.
+    evidence:
+      - url: https://technical.edugain.org/api.php?action=list_entities&format=json
+        status: 200
+        locator: no entity matching "taylors"
+  - standard: scim
+    detail: No institution-operated SCIM provisioning endpoint was found or advertised.
+  - standard: lti
+    detail: No LTI tool or platform registration surface is publicly reachable.
+  - standard: oneroster
+    detail: No OneRoster endpoint was found; no student information system is publicly exposed.
+  - standard: ed-fi
+    detail: Ed-Fi is a US K-12/state-agency standard and is not applicable to this institution.
+  - standard: caliper
+    detail: No Caliper analytics endpoint was found or advertised.
+  - standard: qti
+    detail: No QTI assessment surface is publicly reachable.

@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Taylor's Library Koha REST checkouts items API
-  description: OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1. This document was converted to OpenAPI 3.0 from the live, publicly retrievable Swagger 2.0 definition at https://librarycatalogue.taylors.edu.my/api/v1/. Only resources whose object schemas were confirmed present in the live definition (patron, checkout, hold, item, library, item_type) are described here. Collection and resource endpoints require authentication (HTTP 401 is returned to anonymous clients); the specification document itself is public.
+  title: Taylor's Library Koha REST Items API
+  description: OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1.
   version: v1
   contact:
     name: Taylor's University Library
@@ -13,13 +13,13 @@ security:
 - basicAuth: []
 - oauth2ClientCredentials: []
 tags:
-- name: items
+- name: Items
   description: Catalog items
 paths:
   /items:
     get:
       tags:
-      - items
+      - Items
       operationId: listItems
       summary: List items
       responses:
@@ -42,7 +42,7 @@ paths:
         type: integer
     get:
       tags:
-      - items
+      - Items
       operationId: getItem
       summary: Get item
       responses:
@@ -84,99 +84,119 @@ components:
           type: integer
           description: Internal identifier for the parent bibliographic record
         external_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           maxLength: 20
           description: The item's barcode
         callnumber:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           maxLength: 255
           description: Call number for this item
         home_library_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           maxLength: 10
           description: Internal library id for the library the item belongs to
         holding_library_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           maxLength: 10
           description: Library that is currently in possession of the item
         item_type_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           maxLength: 10
           description: Itemtype defining the type for this item
         collection_code:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           maxLength: 80
           description: Authorized value for the collection code associated with this item
         location:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           maxLength: 80
           description: Authorized value for the shelving location for this item
         permanent_location:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           maxLength: 80
           description: The permanent shelving location
         copy_number:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           maxLength: 32
           description: Copy number
         inventory_number:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           maxLength: 80
           description: Inventory number
         acquisition_date:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
           description: The date the item was acquired
         replacement_price:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           description: Cost the library charges to replace the item
         purchase_price:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           description: Purchase price
         public_notes:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Public notes on this item
         internal_notes:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Non-public notes on this item
         checkouts_count:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Number of times this item has been checked out
         holds_count:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Number of times this item has been placed on hold
         renewals_count:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Number of times this item has been renewed
         not_for_loan_status:
           type: integer
           description: Authorized value defining why this item is not for loan
         last_seen_date:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           description: The date the item barcode was last scanned
         uri:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: URL for the item
         timestamp:
           type: string

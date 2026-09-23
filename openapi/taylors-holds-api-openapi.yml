@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Taylor's Library Koha REST checkouts holds API
-  description: OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1. This document was converted to OpenAPI 3.0 from the live, publicly retrievable Swagger 2.0 definition at https://librarycatalogue.taylors.edu.my/api/v1/. Only resources whose object schemas were confirmed present in the live definition (patron, checkout, hold, item, library, item_type) are described here. Collection and resource endpoints require authentication (HTTP 401 is returned to anonymous clients); the specification document itself is public.
+  title: Taylor's Library Koha REST Holds API
+  description: OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1.
   version: v1
   contact:
     name: Taylor's University Library
@@ -13,13 +13,13 @@ security:
 - basicAuth: []
 - oauth2ClientCredentials: []
 tags:
-- name: holds
+- name: Holds
   description: Holds (reservations)
 paths:
   /holds:
     get:
       tags:
-      - holds
+      - Holds
       operationId: listHolds
       summary: List holds
       responses:
@@ -42,7 +42,7 @@ paths:
         type: integer
     get:
       tags:
-      - holds
+      - Holds
       operationId: getHold
       summary: Get hold
       responses:
@@ -57,19 +57,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/error'
   schemas:
     hold:
       type: object
@@ -82,52 +69,63 @@ components:
           type: integer
           description: Internal patron identifier
         biblio_id:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Internal biblio identifier
         item_id:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Internal item identifier
         item_type_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: If record level hold, the optional itemtype of the requested item
         pickup_library_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Internal library identifier for the pickup library
         hold_date:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
           description: The date the hold was placed
         expiration_date:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
           description: The date the hold expires
         cancellation_date:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
           description: The date the hold was cancelled
         cancellation_reason:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: The reason the hold was cancelled
         waiting_date:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
           description: The date the item was marked as waiting at the library
         priority:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Where in the queue the patron sits
         status:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: A one letter code defining the status of the hold after confirmation
         item_level:
           type: boolean
@@ -136,9 +134,10 @@ components:
           type: boolean
           description: Controls if the hold is suspended
         suspended_until:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           description: Date until which the hold has been suspended
         non_priority:
           type: boolean
@@ -147,8 +146,9 @@ components:
           type: boolean
           description: Controls if the hold is given the lowest priority on the queue
         notes:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Notes related to this hold
         timestamp:
           type: string
@@ -165,6 +165,19 @@ components:
           description: Error code
       required:
       - error
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
   securitySchemes:
     basicAuth:
       type: http

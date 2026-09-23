@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Taylor's Library Koha REST checkouts patrons API
-  description: OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1. This document was converted to OpenAPI 3.0 from the live, publicly retrievable Swagger 2.0 definition at https://librarycatalogue.taylors.edu.my/api/v1/. Only resources whose object schemas were confirmed present in the live definition (patron, checkout, hold, item, library, item_type) are described here. Collection and resource endpoints require authentication (HTTP 401 is returned to anonymous clients); the specification document itself is public.
+  title: Taylor's Library Koha REST Patrons API
+  description: OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1.
   version: v1
   contact:
     name: Taylor's University Library
@@ -55,6 +55,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    patron_id_pp:
+      name: patron_id
+      in: path
+      required: true
+      description: Internal patron identifier
+      schema:
+        type: integer
   responses:
     Forbidden:
       description: Access forbidden
@@ -88,8 +96,9 @@ components:
           type: integer
           description: Internal patron identifier
         cardnumber:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           maxLength: 32
           description: library assigned user identifier
         category_id:
@@ -101,91 +110,111 @@ components:
           maxLength: 10
           description: Internal identifier for the patron's home library
         firstname:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: patron's first name
         surname:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: patron's surname or last name
         middle_name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: patron's middle name
         preferred_name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: patron's preferred name
         title:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: patron's title
         email:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: primary email address for patron's primary address
         secondary_email:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: secondary email address for patron's primary address
         phone:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: primary phone number for patron's primary address
         mobile:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: the other phone number for patron's primary address
         date_of_birth:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
           description: patron's date of birth
         date_enrolled:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
           description: date the patron was added to Koha
         expiry_date:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
           description: date the patron's card is set to expire
         address:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: first address line of patron's primary address
         city:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: city or town of patron's primary address
         state:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: state or province of patron's primary address
         postal_code:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: zip or postal code of patron's primary address
         country:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: country of patron's primary address
         lang:
           type: string
           maxLength: 25
           description: lang to use to send notices to this patron
         checkouts_count:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Number of checkouts
         overdues_count:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Number of overdued checkouts
         account_balance:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           description: Balance of the patron's account
         anonymized:
           type: boolean
@@ -200,9 +229,10 @@ components:
           readOnly: true
           description: If any restriction applies to the patron
         updated_on:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           description: last modification date of the patron
     error:
       type: object
@@ -215,14 +245,6 @@ components:
           description: Error code
       required:
       - error
-  parameters:
-    patron_id_pp:
-      name: patron_id
-      in: path
-      required: true
-      description: Internal patron identifier
-      schema:
-        type: integer
   securitySchemes:
     basicAuth:
       type: http

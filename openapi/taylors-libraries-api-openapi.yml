@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Taylor's Library Koha REST checkouts libraries API
-  description: OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1. This document was converted to OpenAPI 3.0 from the live, publicly retrievable Swagger 2.0 definition at https://librarycatalogue.taylors.edu.my/api/v1/. Only resources whose object schemas were confirmed present in the live definition (patron, checkout, hold, item, library, item_type) are described here. Collection and resource endpoints require authentication (HTTP 401 is returned to anonymous clients); the specification document itself is public.
+  title: Taylor's Library Koha REST Libraries API
+  description: OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1.
   version: v1
   contact:
     name: Taylor's University Library
@@ -13,13 +13,13 @@ security:
 - basicAuth: []
 - oauth2ClientCredentials: []
 tags:
-- name: libraries
+- name: Libraries
   description: Libraries (branches)
 paths:
   /libraries:
     get:
       tags:
-      - libraries
+      - Libraries
       operationId: listLibraries
       summary: List libraries
       responses:
@@ -42,7 +42,7 @@ paths:
         type: string
     get:
       tags:
-      - libraries
+      - Libraries
       operationId: getLibrary
       summary: Get library
       responses:
@@ -71,6 +71,17 @@ components:
           schema:
             $ref: '#/components/schemas/error'
   schemas:
+    error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        error_code:
+          type: string
+          description: Error code
+      required:
+      - error
     library:
       type: object
       additionalProperties: false
@@ -87,67 +98,82 @@ components:
           type: string
           description: Printable name of library
         address1:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: the first address line of the library
         address2:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: the second address line of the library
         address3:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: the third address line of the library
         city:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: the city or province of the library
         state:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: the regional state of the library
         postal_code:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           maxLength: 25
           description: the postal code of the library
         country:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: the country of the library
         phone:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: the primary phone of the library
         fax:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: the fax number of the library
         email:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: the primary email address of the library
         url:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: the URL for your library or branch's website
         ip:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           maxLength: 15
           description: the IP address for your library or branch
         notes:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: notes related to your library or branch
         marc_org_code:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           maxLength: 16
           description: MARC Organization Code
         geolocation:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           maxLength: 255
           description: geolocation of your library
         pickup_location:
@@ -156,17 +182,6 @@ components:
         public:
           type: boolean
           description: If the library is visible to the public
-    error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-        error_code:
-          type: string
-          description: Error code
-      required:
-      - error
   securitySchemes:
     basicAuth:
       type: http

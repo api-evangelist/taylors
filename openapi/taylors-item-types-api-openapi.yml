@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Taylor's Library Koha REST checkouts item_types API
-  description: OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1. This document was converted to OpenAPI 3.0 from the live, publicly retrievable Swagger 2.0 definition at https://librarycatalogue.taylors.edu.my/api/v1/. Only resources whose object schemas were confirmed present in the live definition (patron, checkout, hold, item, library, item_type) are described here. Collection and resource endpoints require authentication (HTTP 401 is returned to anonymous clients); the specification document itself is public.
+  title: Taylor's Library Koha REST Item Types API
+  description: OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1.
   version: v1
   contact:
     name: Taylor's University Library
@@ -13,13 +13,13 @@ security:
 - basicAuth: []
 - oauth2ClientCredentials: []
 tags:
-- name: item_types
+- name: Item Types
   description: Item types
 paths:
   /item_types:
     get:
       tags:
-      - item_types
+      - Item Types
       operationId: listItemTypes
       summary: List item types
       responses:
@@ -34,6 +34,13 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
   schemas:
     error:
       type: object
@@ -62,28 +69,34 @@ components:
           type: string
           description: A plain text explanation of the item type
         parent_type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Unique key, a code associated with the parent item type
         rentalcharge:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           description: The amount charged when this item is checked out
         daily_rental_charge:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           description: The amount charged for each day between checkout and due date
         hourly_rental_charge:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           description: The amount charged for each hour between checkout and due date
         default_replacement_cost:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           description: Default replacement cost
         process_fee:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
           description: Default processing fee
         not_for_loan_status:
           type: boolean
@@ -95,20 +108,15 @@ components:
           type: boolean
           description: Whether this item type is normally bookable
         image_url:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: URL for the item type icon
         summary:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Information from the summary field, may include HTML
-  responses:
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/error'
   securitySchemes:
     basicAuth:
       type: http

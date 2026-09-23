@@ -1,12 +1,7 @@
 {
   "provider": "taylors",
   "sources": [
-    "taylors-checkouts-api-openapi.yml",
-    "taylors-holds-api-openapi.yml",
-    "taylors-item-types-api-openapi.yml",
-    "taylors-items-api-openapi.yml",
-    "taylors-libraries-api-openapi.yml",
-    "taylors-patrons-api-openapi.yml"
+    "_original/taylors-library-rest.yaml"
   ],
   "outputs": [
     "taylors-checkouts-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "taylors-library-rest.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "taylors-checkouts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "taylors-holds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "taylors-item-types-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "taylors-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "taylors-libraries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "taylors-patrons-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

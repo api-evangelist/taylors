@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Taylor's Library Koha REST checkouts API
-  description: OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1. This document was converted to OpenAPI 3.0 from the live, publicly retrievable Swagger 2.0 definition at https://librarycatalogue.taylors.edu.my/api/v1/. Only resources whose object schemas were confirmed present in the live definition (patron, checkout, hold, item, library, item_type) are described here. Collection and resource endpoints require authentication (HTTP 401 is returned to anonymous clients); the specification document itself is public.
+  title: Taylor's Library Koha REST Checkouts API
+  description: OpenAPI 3.0 description of the Taylor's University Library catalog REST API, served by the open-source Koha integrated library system under /api/v1.
   version: v1
   contact:
     name: Taylor's University Library
@@ -13,13 +13,13 @@ security:
 - basicAuth: []
 - oauth2ClientCredentials: []
 tags:
-- name: checkouts
+- name: Checkouts
   description: Item checkouts (issues)
 paths:
   /checkouts:
     get:
       tags:
-      - checkouts
+      - Checkouts
       operationId: listCheckouts
       summary: List checkouts
       responses:
@@ -42,7 +42,7 @@ paths:
         type: integer
     get:
       tags:
-      - checkouts
+      - Checkouts
       operationId: getCheckout
       summary: Get checkout
       responses:
@@ -58,30 +58,19 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/error'
     Unauthorized:
       description: Authentication required
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
   schemas:
-    error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-        error_code:
-          type: string
-          description: Error code
-      required:
-      - error
     checkout:
       type: object
       additionalProperties: false
@@ -93,11 +82,13 @@ components:
           type: integer
           description: Internal patron identifier
         item_id:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
         library_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: code of the library the item was checked out
         checkout_date:
           type: string
@@ -108,44 +99,62 @@ components:
           format: date-time
           description: Due date
         checkin_date:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           description: Date the item was returned
         last_renewed_date:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           description: Date the item was last renewed
         renewals_count:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Number of renewals
         unseen_renewals:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Number of consecutive unseen renewals
         auto_renew:
           type: boolean
           description: Auto renewal
         auto_renew_error:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Auto renewal error
         onsite_checkout:
           type: boolean
           description: On site checkout
         external_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: other identifier of checked out item f.e. barcode
         note:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Issue note text
         timestamp:
           type: string
           description: Last update time
+    error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        error_code:
+          type: string
+          description: Error code
+      required:
+      - error
   securitySchemes:
     basicAuth:
       type: http
