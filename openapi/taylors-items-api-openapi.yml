@@ -57,20 +57,18 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/error'
   schemas:
+    error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        error_code:
+          type: string
+          description: Error code
+      required:
+      - error
     item:
       type: object
       additionalProperties: false
@@ -202,17 +200,19 @@ components:
           type: string
           format: date-time
           description: Date and time this item was last altered
-    error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-        error_code:
-          type: string
-          description: Error code
-      required:
-      - error
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
   securitySchemes:
     basicAuth:
       type: http

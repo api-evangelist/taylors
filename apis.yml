@@ -129,7 +129,7 @@ apis:
   - Checkout
   - Holds
   - Item
-  - Libraries
+  - Library
   - Item Types
   tags_raw:
   - patrons
@@ -138,6 +138,7 @@ apis:
   - items
   - libraries
   - item_types
+  - Libraries
   properties:
   - type: APIReference
     url: https://librarycatalogue.taylors.edu.my/api/v1/

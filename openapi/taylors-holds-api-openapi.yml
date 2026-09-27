@@ -58,6 +58,17 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        error_code:
+          type: string
+          description: Error code
+      required:
+      - error
     hold:
       type: object
       additionalProperties: false
@@ -154,17 +165,6 @@ components:
           type: string
           format: date-time
           description: Timestamp for the latest hold update
-    error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-        error_code:
-          type: string
-          description: Error code
-      required:
-      - error
   responses:
     NotFound:
       description: Resource not found
