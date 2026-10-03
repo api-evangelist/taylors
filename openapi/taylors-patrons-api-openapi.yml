@@ -55,33 +55,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    patron_id_pp:
-      name: patron_id
-      in: path
-      required: true
-      description: Internal patron identifier
-      schema:
-        type: integer
-  responses:
-    Forbidden:
-      description: Access forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/error'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/error'
   schemas:
     patron:
       type: object
@@ -245,6 +218,33 @@ components:
           description: Error code
       required:
       - error
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+    Forbidden:
+      description: Access forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+  parameters:
+    patron_id_pp:
+      name: patron_id
+      in: path
+      required: true
+      description: Internal patron identifier
+      schema:
+        type: integer
   securitySchemes:
     basicAuth:
       type: http
