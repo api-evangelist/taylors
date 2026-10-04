@@ -57,18 +57,20 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
   schemas:
-    error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-        error_code:
-          type: string
-          description: Error code
-      required:
-      - error
     library:
       type: object
       additionalProperties: false
@@ -169,19 +171,17 @@ components:
         public:
           type: boolean
           description: If the library is visible to the public
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/error'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/error'
+    error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        error_code:
+          type: string
+          description: Error code
+      required:
+      - error
   securitySchemes:
     basicAuth:
       type: http

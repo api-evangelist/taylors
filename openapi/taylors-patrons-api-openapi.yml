@@ -55,7 +55,37 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    Forbidden:
+      description: Access forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
   schemas:
+    error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        error_code:
+          type: string
+          description: Error code
+      required:
+      - error
     patron:
       type: object
       additionalProperties: false
@@ -207,36 +237,6 @@ components:
           - 'null'
           format: date-time
           description: last modification date of the patron
-    error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-        error_code:
-          type: string
-          description: Error code
-      required:
-      - error
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/error'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/error'
-    Forbidden:
-      description: Access forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/error'
   parameters:
     patron_id_pp:
       name: patron_id
