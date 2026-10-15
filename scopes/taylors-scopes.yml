@@ -1,17 +1,38 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/taylors-library-rest.yaml
-docs: https://librarycatalogue.taylors.edu.my/api/v1/.html
-note: >-
-  The Koha REST API behind the Taylor's Library catalog supports OAuth2 client
-  credentials only and does not use OAuth scopes — API clients inherit the
-  permissions of the patron they are tied to, and the API documentation states
-  "We do not yet support OAuth Scopes or the Authorization Code grant flow"
-  (https://librarycatalogue.taylors.edu.my/api/v1/.html).
+generated: '2026-10-14'
+method: none
+source: openapi/taylors-checkouts-api-openapi.yml, openapi/taylors-holds-api-openapi.yml, openapi/taylors-item-types-api-openapi.yml,
+  openapi/taylors-items-api-openapi.yml, openapi/taylors-libraries-api-openapi.yml, openapi/taylors-patrons-api-openapi.yml
 schemes:
 - name: oauth2ClientCredentials
-  source: openapi/taylors-library-rest.yaml
+  source: openapi/taylors-checkouts-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://librarycatalogue.taylors.edu.my/api/v1/oauth/token
+- name: oauth2ClientCredentials
+  source: openapi/taylors-holds-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://librarycatalogue.taylors.edu.my/api/v1/oauth/token
+- name: oauth2ClientCredentials
+  source: openapi/taylors-item-types-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://librarycatalogue.taylors.edu.my/api/v1/oauth/token
+- name: oauth2ClientCredentials
+  source: openapi/taylors-items-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://librarycatalogue.taylors.edu.my/api/v1/oauth/token
+- name: oauth2ClientCredentials
+  source: openapi/taylors-libraries-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://librarycatalogue.taylors.edu.my/api/v1/oauth/token
+- name: oauth2ClientCredentials
+  source: openapi/taylors-patrons-api-openapi.yml
   flows:
   - flow: clientCredentials
     tokenUrl: https://librarycatalogue.taylors.edu.my/api/v1/oauth/token
 scopes: []
+note: The OAuth2 security scheme(s) in the OpenAPI declare no scopes, and no security requirement
+  references one.
