@@ -1,24 +1,22 @@
-# Kin Score artifact — taylors — 2026-09-07T200636
+# Kin Score artifact — taylors — 2026-10-11T110117
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: taylors
-  schema_version: 0.20.0
-  scored_at: '2026-09-07'
-  run_ts: 2026-09-07T200636
-  composite: 51.4
+  schema_version: 0.23.0
+  scored_at: '2026-10-11'
+  run_ts: 2026-10-11T110117
+  composite: 46.3
   band: developing
   facets:
-    discoverability: 68.5
-    contract_quality: 66.0
-    governance: 25.0
-    operational_transparency: 26.3
+    discoverability: 66.1
+    contract_quality: 60.6
+    contract_governance: 23.5
+    operational_transparency: 24.2
     developer_ergonomics: 33.3
-    commercial_clarity: 52.6
-    contract_governance: 25.0
-    access_clarity: 52.6
+    access_clarity: 50.5
   agent_readiness:
-    score: 27.7
+    score: 25.5
     band: agent-aware
     dimensions:
       spec_presence: true
@@ -29,7 +27,7 @@ kin_score:
       idempotency: na
       error_semantics: false
       openapi_examples: documented
-      rate_limit_signal: documented
+      rate_limit_signal: derived
       event_surface_described: false
       agent_skills: false
       well_known_catalog: false
@@ -44,7 +42,7 @@ kin_score:
     applies: true
     regime: Education & Research
     regime_id: education
-    score: 57.4
+    score: 30.4
     matched_via: tags
   provenance:
     agentic_access: derived
