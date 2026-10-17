@@ -71,6 +71,17 @@ components:
           schema:
             $ref: '#/components/schemas/error'
   schemas:
+    error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+        error_code:
+          type: string
+          description: Error code
+      required:
+      - error
     checkout:
       type: object
       additionalProperties: false
@@ -144,17 +155,6 @@ components:
         timestamp:
           type: string
           description: Last update time
-    error:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-        error_code:
-          type: string
-          description: Error code
-      required:
-      - error
   securitySchemes:
     basicAuth:
       type: http

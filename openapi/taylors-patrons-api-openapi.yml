@@ -55,6 +55,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    patron_id_pp:
+      name: patron_id
+      in: path
+      required: true
+      description: Internal patron identifier
+      schema:
+        type: integer
   responses:
     Forbidden:
       description: Access forbidden
@@ -62,14 +70,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/error'
-    Unauthorized:
-      description: Authentication required
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/error'
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:
@@ -237,14 +245,6 @@ components:
           - 'null'
           format: date-time
           description: last modification date of the patron
-  parameters:
-    patron_id_pp:
-      name: patron_id
-      in: path
-      required: true
-      description: Internal patron identifier
-      schema:
-        type: integer
   securitySchemes:
     basicAuth:
       type: http
