@@ -1,4 +1,4 @@
-# Taylor's University (taylors)
+# Taylor's University
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,63 +64,179 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Taylor's University is a private research university in Subang Jaya, Selangor, Malaysia, ranked #251 in the QS World University Rankings 2025. While it publishes no formal branded developer portal, several real, publicly reachable machine interfaces exist across its library and research infrastructure — a Koha-powered library catalog (REST API + OAI-PMH) and a DSpace CRIS e-Repository (REST API + OAI-PMH).
+Taylor's University is a private research university in Subang Jaya, Selangor, Malaysia, ranked #251 in the QS World University Rankings 2025. It operates no developer portal, no public API programme and no public code: the Taylors-University GitHub organisation has existed since 2020 and still holds zero public repositories. What it does operate, on its own infrastructure under taylors.edu.my, are four live machine-readable surfaces — a self-hosted Koha library system exposing a REST API at /api/v1 and an OAI-PMH 2.0 data provider, and a self-hosted DSpace CRIS e-Repository exposing a HAL+JSON REST API at /server/api and a second OAI-PMH 2.0 provider. Both REST contracts are the upstream products' own documents (Koha Development Team; DSpace CRIS 2022.01.01) running on Taylor's servers: the deployment, the data and the DOIs are the institution's, the contract is not. Identity runs through a Microsoft Entra ID tenant whose SAML 2.0 and OpenID Connect metadata are publicly retrievable, and the institution is registered with ROR and holds a Crossref membership through Taylor's University Press. No open data portal, no course-catalog or timetable API, and no institution-operated developer documentation were found.
 
-This repository catalogs that footprint as an APIs.json provider profile.
+**Areas:** Education · Higher Education · University · Private University · Malaysia · Asia · Library · Library Catalog · Institutional Repository · Research Data · OAI-PMH · Identity Federation
 
-- APIs.json: https://raw.githubusercontent.com/api-evangelist/taylors/refs/heads/main/apis.yml
-- Run with Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=taylors-api-evangelist&utm_content=repo
+## Taylor's University on APIs.io
 
-## Type
+Everything profiled for Taylor's University is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/taylors/](https://apis.io/providers/taylors/)** — or go straight to one of the APIs or properties below.
 
-- Index / Consumer / 3rd-Party
+### APIs (7)
 
-## Tags
+- [Taylor's Library Koha REST API](https://apis.io/apis/taylors/library-rest/) — REST API of the Taylor's University Library catalog, served under /api/v1 by a Koha integrated library system that Taylor's self-hosts…
+- [Taylor's Library OAI-PMH](https://apis.io/apis/taylors/library-oai/) — OAI-PMH 2.0 data provider exposed by the Koha-powered Taylor's Library catalog for harvesting bibliographic metadata. The Identify response returns…
+- [Taylor's e-Repository DSpace CRIS REST API](https://apis.io/apis/taylors/irepo-rest/) — The Taylor's e-Repository runs DSpace CRIS 2022.01.01 self-hosted at irepo.taylors.edu.my (resolving through irepo.wip.taylors.edu.my to 103.145.155.17 —…
+- [Taylor's e-Repository OAI-PMH](https://apis.io/apis/taylors/irepo-oai/) — OAI-PMH 2.0 data provider for the DSpace CRIS e-Repository, Identifying as repositoryName "Taylor's University Library", repositoryIdentifier…
+- [Taylor's University Identity Federation (Microsoft Entra ID)](https://apis.io/apis/taylors/entra-identity-federation/) — Taylor's operates a Microsoft Entra ID tenant, 0a39ee13-5c27-420c-b0af-8e65c6929055, branded "Taylor's Education Group", as the identity provider behind…
+- [Taylor's University Crossref Membership](https://apis.io/apis/taylors/crossref-membership/) — Taylor's University Press is Crossref member 37785, registered at Subang Jaya, Selangor, Malaysia, holding DOI prefix 10.58946 with 70 deposited DOIs. This…
+- [Taylor's University ROR Registration](https://apis.io/apis/taylors/ror-registration/) — Taylor's University is registered in the Research Organization Registry as ror.org/0498pcx51, located Subang Jaya, Malaysia, cross-walked to Crossref Funder…
 
-- Education
-- Higher Education
-- University
-- Library
-- Institutional Repository
-- Open Data
-- Malaysia
-- Asia
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **Taylor's Library Koha REST API** — versioned Koha REST API under `/api/v1`. Docs: https://librarycatalogue.taylors.edu.my/api/v1/
-- **Taylor's Library OAI-PMH** — Koha OAI-PMH 2.0 data provider. Docs: https://librarycatalogue.taylors.edu.my/cgi-bin/koha/oai.pl?verb=Identify
-- **Taylor's e-Repository DSpace REST API** — DSpace CRIS HAL+JSON REST API. Docs: https://irepo.taylors.edu.my/server/api
-- **Taylor's e-Repository OAI-PMH** — DSpace CRIS OAI-PMH 2.0 data provider (OpenAIRE CERIF). Docs: https://irepo.taylors.edu.my/server/oai/request?verb=Identify
+#### Agentic access (1)
 
-## Plans / Rate Limits / FinOps
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Plans: [plans/taylors-plans-pricing.yml](plans/taylors-plans-pricing.yml)
-- Rate Limits: [rate-limits/taylors-rate-limits.yml](rate-limits/taylors-rate-limits.yml)
-- FinOps: [finops/taylors-finops.yml](finops/taylors-finops.yml)
+- [Taylors Agentic Access](https://apis.io/agentic-access/taylors/taylors-agentic-access/)
 
-## Timestamps
+#### JSON Schema (4)
 
-- Created: 2026-06-03
-- Modified: 2026-06-03
+The data models the API reads and writes.
 
-## Common Properties
+- [Koha Checkout](https://apis.io/schemas/taylors/taylors-checkout/)
+- [Koha Hold](https://apis.io/schemas/taylors/taylors-hold/)
+- [Koha Item](https://apis.io/schemas/taylors/taylors-item/)
+- [Koha Patron](https://apis.io/schemas/taylors/taylors-patron/)
 
-- Website: https://university.taylors.edu.my/en.html
-- GitHub: https://github.com/Taylors-University (org exists, no public repos)
-- LinkedIn: https://www.linkedin.com/school/taylor's-university/
-- Authentication: Microsoft Entra ID (Taylor's SSO) gating most patron/credentialed endpoints
+#### JSON Structure (2)
 
-## Notes
+Data models expressed in JSON Structure.
 
-All cataloged APIs were verified live during research on 2026-06-03:
-- The Koha OAI-PMH `Identify` verb returns repository name "Taylor's Library".
-- The Koha REST OpenAPI spec is publicly retrievable at `/api/v1/`.
-- The DSpace REST root at `/server/api` returns HAL+JSON identifying "DSpace cris-2022.01.01".
-- The DSpace OAI-PMH `Identify` verb returns "Taylor's University Library".
+- [Taylors Item Structure](https://apis.io/json-structure/taylors/taylors-item-structure/)
+- [Taylors Patron Structure](https://apis.io/json-structure/taylors/taylors-patron-structure/)
 
-No formal developer portal, SDKs, public sign-up flow, or status page were found. No course/timetable/SIS or open-data (`data.*`) public APIs were confirmed; student-facing portals (Taylor's Online, TOPAS, Campus Central) are authenticated applications, not documented public APIs. Endpoints are reported only where actually observed — none were fabricated.
+#### JSON-LD (1)
 
-## Maintainers
+Linked-data contexts for the provider's vocabulary.
 
-- Kin Lane — kin@apievangelist.com
+- [Taylors Context](https://apis.io/jsonld/taylors/taylors-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Taylor's Library Koha API Vocabulary](https://apis.io/vocabularies/taylors/taylors-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Taylors Getcheckout Example](https://apis.io/examples/taylors/taylors-getCheckout-example/)
+- [Taylors Getitem Example](https://apis.io/examples/taylors/taylors-getItem-example/)
+- [Taylors Getpatron Example](https://apis.io/examples/taylors/taylors-getPatron-example/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Taylor's Library Koha REST checkouts API](https://apis.io/collections/taylors/open-taylors-checkouts-api/)
+- [Taylor's Library Koha REST checkouts holds API](https://apis.io/collections/taylors/open-taylors-holds-api/)
+- [Taylor's Library Koha REST checkouts item_types API](https://apis.io/collections/taylors/open-taylors-item-types-api/)
+- [Taylor's Library Koha REST checkouts items API](https://apis.io/collections/taylors/open-taylors-items-api/)
+- [Taylor's Library Koha REST checkouts libraries API](https://apis.io/collections/taylors/open-taylors-libraries-api/)
+- [Taylor's Library Koha REST checkouts patrons API](https://apis.io/collections/taylors/open-taylors-patrons-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Taylor's University — jsonschema rules](https://apis.io/rules/taylors/taylors-jsonschema-spectral-rules/)
+- [Taylor's University API Rules](https://apis.io/rules/taylors/taylors-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Taylors Authentication](https://apis.io/security/taylors/taylors-authentication/)
+- [Taylors Domain Security](https://apis.io/security/taylors/taylors-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Taylors Scopes](https://apis.io/scopes/taylors/taylors-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Taylors Plans Pricing](https://apis.io/plans/taylors/taylors-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Taylors Rate Limits](https://apis.io/rate-limits/taylors/taylors-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Taylors Finops](https://apis.io/finops/taylors/taylors-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://university.taylors.edu.my/en.html)
+- [API reference](https://librarycatalogue.taylors.edu.my/api/v1/)
+- [Support](https://university.taylors.edu.my/en/get-in-touch/contact-information.html)
+- [Privacy policy](https://university.taylors.edu.my/en/privacy-policy.html)
+
+## API Evangelist rating
+
+**Kin Score 40.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 60.6 |
+| Contract governance | 23.5 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 28.9 |
+
+**Agent readiness 26.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 30.4** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/taylors/](https://apis.io/providers/taylors/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Taylor's University: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/taylors/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
